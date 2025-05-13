@@ -154,7 +154,7 @@ Mentsük el ezt a munkát is.
 
 1.  **Pull Request létrehozása:** A GitHub felületén hozz létre egy új Pull Requestet a `feature/api-documentation` branch-ből a `main` branch-be. Adj neki egyértelmű címet és leírást.
 
-:::warning[Fontos]
+:::danger[Fontos]
 Ezt a Pull Requestet is merge-lheted, de **NE TÖRÖLD A BRANCH-ET!**
 :::
 

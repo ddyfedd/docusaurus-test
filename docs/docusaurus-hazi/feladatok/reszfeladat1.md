@@ -240,7 +240,7 @@ Mentsük el a munkánkat a GitHub-ra.
 
 1.  **Pull Request létrehozása:** A GitHub felületén hozz létre egy Pull Request-et a `feature/advanced-structure` branch-ből a `main` branch-be. Adj neki egyértelmű címet és rövid leírást.
 
-:::warning[Fontos]
+:::danger[Fontos]
 Ezt a Pull Requestet merge-lheted, viszont **NE TÖRÖLD A BRANCH-ET!** Ez a PR és a branch arra szolgál, hogy az oktató átnézhesse és értékelhesse az első részfeladatot.
 :::
 

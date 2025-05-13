@@ -190,7 +190,7 @@ Ez a lépés segít abban, hogy a hibás kód ne kerüljön be a `main` branch-b
             run: npm run build
     ```
 
-2.  **Commit és push (egy új branch-en tesztelve):**
+1.  **Commit és push (egy új branch-en tesztelve):**
 
     - Hozz létre egy új, teszt branch-et (pl. `feature/test-pr-workflow`) a `main` branch-ből.
     - Add hozzá a `test.yml` fájlt, commitold és pushold ezt az új branch-et.
