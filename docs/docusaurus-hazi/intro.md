@@ -17,13 +17,13 @@ A feladat célja nem egy tökéletes, minden részletében kidolgozott dokument�
 
 A házi feladat négy fő részből áll, melyek szorosan kapcsolódnak az elmúlt négy óra anyagához. Javasoljuk, hogy az adott óra után rögtön végezd el a kapcsolódó részt, de természetesen egyben is nekifuthatsz, bár úgy több időt vehet igénybe egyszerre.
 
-1.  **[Projekt Alapok, Struktúra és Új Tartalom](./reszfeladat1.md)**
+1.  **[Projekt Alapok, Struktúra és Új Tartalom](./feladatok/reszfeladat1.md)**
     * Kapcsolódó óra: 8. óra - Modern dokumentációs keretrendszerek, Docusaurus alapok
-1.  **[Dinamikus Tartalom - API Dokumentáció](./reszfeladat2.md)**
+1.  **[Dinamikus Tartalom - API Dokumentáció](./feladatok/reszfeladat2.md)**
     * Kapcsolódó óra: 9. óra - Docusaurus: API-dokumentáció, pluginok
-1.  **[Automatizálás - CI/CD Folyamat](./reszfeladat3.md)**
+1.  **[Automatizálás - CI/CD Folyamat](./feladatok/reszfeladat3.md)**
     * Kapcsolódó óra: 10. óra - Verziókövetés és CI/CD a dokumentációban
-1.  **[Együttműködés Szimulálása - Review](./reszfeladat4.md)**
+1.  **[Együttműködés Szimulálása - Review](./feladatok/reszfeladat4.md)**
     * Kapcsolódó óra: 11. óra - Minőségbiztosítás, review és karbantartás
 
 ## Értékelés

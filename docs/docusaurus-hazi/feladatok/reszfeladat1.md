@@ -205,6 +205,8 @@ Mentsük el a munkánkat a GitHubra.
 Ezt a Pull Requestet merge-lheted, viszont **NE TÖRÖLD A BRANCH-ET!** Ez a PR és a branch arra szolgál, hogy az oktató átnézhesse és értékelhesse az első részfeladatot.
 :::
 
+___
+
 ## Elvárás az 1. Részfeladat Végére
 
 * Egy alap Docusaurus projekt van a `main` branch-en.
