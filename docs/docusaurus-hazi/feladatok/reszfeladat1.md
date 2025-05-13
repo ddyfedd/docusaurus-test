@@ -22,6 +22,10 @@ Először is, hozzuk létre a Docusaurus projektünk alapjait.
     npm -v
     ```
 
+    :::tip
+    Ha még nincs Node.js a gépeden, itt találsz további információt a letöltésről és telepítésről: [Download Node.js](https://nodejs.org/en/download/).
+    :::
+
 1.  **Docusaurus projekt létrehozása:** Navigálj egy olyan mappába, ahová létre szeretnéd hozni az új projektet. Hozd létre a projektet a `classic` template alapján. A `my-docs-site` helyett válassz egyedi nevet. Válaszd a `JavaScript` opciót, ennek egyszerűbb átlátni a konfigurációját.
 
     ```bash
@@ -43,18 +47,25 @@ Először is, hozzuk létre a Docusaurus projektünk alapjait.
 1.  **Ismerkedés a struktúrával:** Nézd át a generált mappákat (`docs/`, `blog/`, `src/pages/`) és konfigurációs fájlokat (`docusaurus.config.js`, `sidebars.js`).
     - Módosítsd a `docusaurus.config.js` fájlban az oldal címét (`title`) és a `tagline`-t a saját projektednek megfelelően.
 
-1. **Egyszerű szerkesztés:** Próbálj meg egy egyszerű Markdown fájlt létrehozni a `docs` mappában, és nézd meg, hogyan jelenik meg az oldalon. Figyelj a szükséges 'frontmatter' meglétére (`title`, `sidebar_position`) 
+1. **Egyszerű szerkesztés:** Próbálj meg egy egyszerű Markdown fájlt létrehozni a `docs` mappában, és nézd meg, hogyan jelenik meg az oldalon. Figyelj a szükséges 'frontmatter' meglétére (`title`, `sidebar_position`). 
+
+    :::tip
+    **Itt a kísérletezés ideje!** Próbálj ki különböző Markdown formázásokat, hogy ráérezz, milyen lehetőségeket rejt!
+    :::
 
 :::info[Segítség]
 - [Docusaurus Installation](https://docusaurus.io/docs/installation)
-- [Project Structure](https://docusaurus.io/docs/category/guides)
+- [Docusaur Docs - Project Structure](https://docusaurus.io/docs/category/guides)
+- [Docusaur Docs - Configuration](https://docusaurus.io/docs/configuration)
+- [Docusaur Docs - Sidebar](https://docusaurus.io/docs/sidebar)
+- [Docusaur Docs - Doc front matter](https://docusaurus.io/docs/create-doc#doc-front-matter)
 :::
 
 ### GitHub repository létrehozása és projekt feltöltése
 
 Most verziókezeljük a projektünket.
 
-1.  **Új repository GitHubon:** Hozz létre egy új, publikus repository-t a GitHubon. **Ne inicializáld `README`, `.gitignore` vagy `licenc` fájllal**, ezeket a Docusaurus projekt már tartalmazza.
+1.  **Új repository GitHubon:** Hozz létre egy új, publikus repository-t a GitHubon. **Ne inicializáld `README`, `.gitignore` vagy `licenc` fájllal**, ezeket a Docusaurus projekt már tartalmazza (vagy nincs rájuk szükség).
 
     A feltöltéshez a legegyszerűbb, ha követed a frissen létrehozott repo-dban szereplő instrukciókat. Az ott szereplő parancsokat futtasd egy terminálban.
 
@@ -74,7 +85,7 @@ Most verziókezeljük a projektünket.
     ```
 
 :::info[Segítség]
-[Adding locally hosted code to GitHub](https://docs.github.com/en/migrations/importing-source-code/using-the-command-line-to-import-a-git-repository/adding-locally-hosted-code-to-github)
+[Adding locally hosted code to GitHub](https://docs.github.com/en/migrations/importing-source-code/using-the-command-line-to-import-source-code/adding-locally-hosted-code-to-github)
 :::
 
 ## 1.2 Haladóbb szerkesztések és struktúraátalakítás (új branch-en)
@@ -136,6 +147,10 @@ Szervezzük át a kezdeti dokumentációt.
 
 1.  **Ellenőrzés:** Indítsd el a fejlesztői szervert (`npm start`), és ellenőrizd, hogy az oldal hibátlanul felépül-e, a linkek a "Tutorials" szekcióban működnek-e, és az oldalsáv helyesen jelenik-e meg.
 
+    :::tip
+    Ha a build folyamat hibát dob, ellenőrizd a configurációt, lehet valamelyik ellenőrzés (`onBrokenLinks`, `onBrokenMarkdownLinks`, `onBrokenAnchors`) értéke `throw`. Ilyen esetben állítsd át ezt eggyel megengedőbb figyelmeztetési szintre, pl. `warn`.
+    :::
+
 :::info[Segítség]
 [Docusaurus Sidebar Docs](https://docusaurus.io/docs/sidebar)
 :::
@@ -179,36 +194,6 @@ Bővítsük a dokumentációt egy új szekcióval.
 
 Integráljuk az új szekciót a navigációba.
 
-1.  **Navbar frissítése:** Adj hozzá egy új linket a `docusaurus.config.js` `themeConfig.navbar.items` tömbjéhez, ami az új `guides` szekcióra mutat.
-
-    ```javascript title="docusaurus.config.js"
-    // ...
-    themeConfig: {
-      navbar: {
-        items: [
-          {
-            to: '/docs/tutorials/intro'
-            type: 'docSidebar',
-            sidebarId: 'tutorialSidebar', // A tutorials oldalsáv ID-ja
-            position: 'left',
-            label: 'Tutorials',
-          },
-          {
-            to: '/docs/guides/installation-guide', // Az új guides szekció első oldalának slug-ja
-            label: 'Guides',
-            position: 'left',
-            // Ha külön oldalsávot szeretnél neki:
-            // type: 'docSidebar',
-            // sidebarId: 'guideSidebar',
-          },
-          // ...többi navbar item
-        ],
-      },
-      // ...
-    },
-    // ...
-    ```
-
 1.  **Sidebar konfigurálása a "Guides"-hoz:** A `sidebars.js` fájlban:
 
       ```javascript title="sidebars.js"
@@ -224,7 +209,38 @@ Integráljuk az új szekciót a navigációba.
       module.exports = sidebars;
       ```
 
-1.  **Ellenőrzés:** Indítsd el a fejlesztői szervert (`npm start`), és győződj meg róla, hogy az új "Guides" szekció és annak tartalma helyesen jelenik meg.
+1.  **Navbar frissítése:** Adj hozzá egy új linket a `docusaurus.config.js` `themeConfig.navbar.items` tömbjéhez, ami az új `guides` szekcióra mutat.
+
+    ```javascript title="docusaurus.config.js"
+    // ...
+    themeConfig: {
+      navbar: {
+        items: [
+          {
+            to: '/docs/tutorials/intro' // Ez a sor opcionális, akkor használd, ha konkrét oldalra szeretnél mutatni a navbar-ban
+            type: 'docSidebar',
+            sidebarId: 'tutorialSidebar', // A tutorials oldalsáv ID-ja
+            position: 'left',
+            label: 'Tutorials',
+          },
+          {
+            to: '/docs/guides/installation-guide', // Az új guides szekció első oldalának slug-ja, vagy elérési útja a mappa szerkezetben
+            // Idézd fel az órán elhangzottak alapján, ennek a megoldásnak a sajátosságait - lehet sidebarId-vel jobb lehet ezt behivatkozni, ha sok változtatásra számítasz
+            label: 'Guides',
+            position: 'left',
+            // Ha külön oldalsávot szeretnél neki:
+            // type: 'docSidebar',
+            // sidebarId: 'guideSidebar',
+          },
+          // ...többi navbar item
+        ],
+      },
+      // ...
+    },
+    // ...
+    ```
+
+1.  **Ellenőrzés:** Indítsd el a fejlesztői szervert (`npm start`), és győződj meg róla, hogy az új **Guides** szekció és annak tartalma helyesen jelenik meg.
 
 ### Változások feltöltése és pull request létrehozása
 
@@ -246,11 +262,14 @@ Ezt a Pull Requestet merge-lheted, viszont **NE TÖRÖLD A BRANCH-ET!** Ez a PR 
 
 ___
 
-## Elvárás az 1. részfeladat végére
+## Elvárás az 1. feladat végére
 
-- Egy alap Docusaurus projekt van a `main` branch-en.
-- Egy `feature/advanced-structure` (vagy hasonló nevű) branch létezik a GitHub repository-ban, ami tartalmazza:
-    - A `docs/tutorials` mappába áthelyezett eredeti dokumentációt, helyesen konfigurált oldalsávval és navigációval.
-    - Egy új `docs/guides` mappát több oldallal, almappákkal, ahol a frontmatter (`sidebar_position`, `_category_.json` stb.) használata látható.
-    - A `guides` szekció megjelenik a navigációs sávban és az oldalsávban.
-- Egy nyitott Pull Request mutat a `feature/advanced-structure` branch-ből a `main` branch-be, ami nem lett merge-elve.
+| Kritérium | Elvárt állapot |
+| --------- |--------------- |
+| **Alap Docusaurus projekt** | Egy működő, alap Docusaurus projekt létezik a `main` branch-en a GitHub repository-ban. |
+| **`feature/advanced-structure` branch** | Létezik egy `feature/advanced-structure` (vagy hasonló nevű) branch a GitHub repository-ban. |
+| **Dokumentáció átstrukturálása (`docs/tutorials`)** | Az eredeti dokumentáció a `docs/tutorials` mappába lett áthelyezve, az oldalsáv és a navigáció helyesen konfigurálva. |
+| **Új dokumentációs szekció (`docs/guides`)** | Létrejött egy új `docs/guides` mappa több oldallal és almappákkal. |
+| **Frontmatter használata** | A `docs/guides` szekcióban a `sidebar_position`, `title`, és `_category_.json` használata demonstrálva van. |
+| **Navigáció (`guides` szekció)** | Az új `guides` szekció megjelenik a navigációs sávban és/vagy az oldalsáv(ak)ban, és az oldalak elérhetőek. |
+| **Pull Request (struktúra)** | Egy merge-elt (de a branch nem törölt) PR mutat a `feature/advanced-structure` branch-ből a `main` branch-be. |

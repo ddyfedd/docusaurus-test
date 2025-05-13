@@ -200,9 +200,11 @@ Ez a lépés segít abban, hogy a hibás kód ne kerüljön be a `main` branch-b
 
 ___
 
-## Elvárás a 3. részfeladat végére
+## Elvárás a 3. feladat végére
 
-- A `docusaurus.config.js` helyesen van beállítva a GitHub Pages publikáláshoz.
-- Egy működő `deploy.yml` GitHub Actions workflow a `.github/workflows` mappában, ami a `main` branch-re történő merge után sikeresen build-eli és deploy-olja az oldalt GitHub Pages-re.
-- A Docusaurus oldal (beleértve a korábbi feladatokból származó Tutorials, Guides és API szekciókat) sikeresen elérhető a publikus GitHub Pages URL-en.
-- Opcionálisan: Egy `test.yml` workflow is létezik, ami Pull Request-ek esetén ellenőrzi a build sikerességét.
+| Kritérium | Elvárt állapot |
+| --------- | -------------- |
+| **GitHub Pages konfiguráció** | A `docusaurus.config.js` helyesen van beállítva a GitHub Pages publikáláshoz (`url`, `baseUrl`, `organizationName`, `projectName`). |
+| **Deployment workflow (`deploy.yml`)** | Egy működő `deploy.yml` GitHub Actions workflow létezik, ami a `main` branch-re történő merge után sikeresen build-eli és deploy-olja az oldalt. |
+| **Sikeres deployment** | A Docusaurus oldal (beleértve a korábbi feladatokból származó tartalmakat) sikeresen elérhető a publikus GitHub Pages URL-en. |
+| **(Opcionális) Teszt workflow (`test.yml`)** | Egy `test.yml` workflow is létezik, ami Pull Request-ek esetén ellenőrzi a Docusaurus build sikerességét. |

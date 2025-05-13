@@ -114,9 +114,13 @@ A `main` branch-be történő merge után a 3. feladatban beállított `deploy.y
 
 ___
 
-## Elvárás a 4. részfeladat végére
+## Elvárás a 4. feladat végére
 
-- Egy `feature/update-content-and-review` (vagy hasonló nevű) branch létezik a GitHub repository-ban, ami tartalmazza a legutóbbi módosításokat.
-- Egy Pull Requestet hoztál létre ebből a branch-ből a `main` branch-be, amit (szimulált review után) sikeresen merge-eltél. **A feature branch ne legyen törölve.**
-- (Opcionális, de ajánlott) Demonstráltad a branch protection rule-ok használatát (kötelező review, kötelező status check).
-- A `main` branch-be történt merge után a CI/CD folyamat sikeresen deployolta a frissített oldalt GitHub Pages-re, és a változtatások láthatóak az élő oldalon.
+| Kritérium | Elvárt állapot |
+| --------- | -------------- |
+| **`feature/update-content-and-review` branch** | Létezik egy `feature/update-content-and-review` (vagy hasonló nevű) branch a GitHub repository-ban, ami tartalmazza a legutóbbi módosításokat. |
+| **Pull Request (Tartalomfrissítés)** | Létrehoztál egy Pull Requestet a `feature/update-content-and-review` branch-ből a `main` branch-be. |
+| **Merge** | A PR (szimulált review után) sikeresen merge-elve lett a `main` branch-be. A feature branch ne legyen törölve. |
+| **(Opcionális) Branch Protection** | Demonstráltad a branch protection rule-ok használatát (pl. kötelező review, kötelező status check a merge előtt). |
+| **CI/CD és publikálás** | A `main` branch-be történt merge után a CI/CD folyamat sikeresen deploy-olta a frissített oldalt GitHub Pages-re. |
+| **Változások Láthatósága** | A 4.2 pontban végrehajtott változtatások láthatóak az élő, publikált GitHub Pages oldalon. |
