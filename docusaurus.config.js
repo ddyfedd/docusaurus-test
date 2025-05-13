@@ -76,23 +76,21 @@ const config = {
         },
         items: [
           {
-            to: '/docs/tutorials',
-            type: 'docSidebar',
-            sidebarId: 'tutorialSidebar',
-            position: 'left',
-            label: 'Tutorial',
-          },
-          {
-            to: '/docs/docusaurus-hazi',
             type: 'docSidebar',
             sidebarId: 'haziSidebar',
             position: 'left',
             label: 'Docusaurus házi',
           },
+          {
+            type: 'docSidebar',
+            sidebarId: 'tutorialSidebar',
+            position: 'left',
+            label: 'Tutorial',
+          },
           {to: '/blog', label: 'Blog', position: 'left'},
           {
-            href: 'https://github.com/facebook/docusaurus',
-            label: 'GitHub',
+            href: 'https://discord.com/channels/1359502409461665883/1359502409734291516',
+            label: 'Discord',
             position: 'right',
           },
         ],
