@@ -194,6 +194,12 @@ Ez a lépés segít abban, hogy hibás kód ne kerülhessen be a `main` branch-b
             run: yarn build
     ```
 
+    :::tip Légy kreatív!
+    **Itt is van lehetőség kreatívnak lenni!** Gondolj bele, milyen lehetőségeket rejthet egy ilyen teszt folyamat. Próbáld meg megfogalmazni azokat a kritériumokat, amik alapján nem engednéd, hogy a dokumentáció felépüljön, vagy milyen hibákról várnál el értesítést a build log-ban? 
+    
+    Milyen más lehetőségekre tudsz még gondolni?
+    :::
+
 1.  **Commit és push (egy új branch-en tesztelve):**
 
     - Hozz létre egy új, teszt branch-et (pl. `feature/test-pr-workflow`) a `main` branch-ből.

@@ -5,12 +5,18 @@ sidebar_position: 4
 
 # 4. feladat: Együttműködés szimulálása - változások kezelése és review folyamat
 
-Az utolsó részben egy egyszerűsített review folyamatot fogsz szimulálni, ahogy az a valós projektekben is történik. Ez magában foglalja a változtatások külön branch-en történő fejlesztését, Pull Request (PR) létrehozását, és (opcionálisan) a PR ellenőrzését és a branch protection szabályok alkalmazását.
+Az utolsó feladatban egy egyszerűsített review folyamatot fogsz szimulálni, ahogy az a valós projektekben is történik.
+
+Ez magában foglalja a változtatások külön branch-en történő fejlesztését, Pull Request (PR) létrehozását, és (opcionálisan) a PR ellenőrzését és branch protection szabályok alkalmazását.
 
 ## Mielőtt elkezdenéd
 
-- A `main` branch-ed tartalmazza az 1., 2. és 3. részfeladatok eredményeit (azaz a strukturált "Tutorials" és "Guides" szekciókat, az integrált API dokumentációt, és a beállított CI/CD folyamatot, ami a `main` branch-re sikeresen deploy-olja az oldalt GitHub Pages-re).
-- Ha beállítottad a 3. részfeladatban az opcionális `test.yml` workflow-t (ami PR-ekre fut le), az most hasznos lesz.
+
+Bizonyosodj meg róla, hogy a `main` branch-ed tartalmazza az 1., 2. és 3. feladatok eredményeit (azaz a strukturált "Tutorials" és "Guides" szekciókat, az integrált API dokumentációt, és a beállított CI/CD folyamatot, ami a `main` branch-re sikeresen deploy-olja az oldalt GitHub Pages-re).
+
+:::tip
+Ha beállítottad a 3. részfeladatban az opcionális `test.yml` workflow-t (ami PR-ekre fut le), az most hasznos lesz.
+:::
 
 ## 4.1 Új branch létrehozása a változtatásoknak
 
@@ -34,9 +40,12 @@ Minden új funkciót, javítást vagy nagyobb módosítást érdemes külön bra
 Végezz el néhány egyszerűbb módosítást a Docusaurus oldaladon ezen az új branch-en. Például:
 
 1.  **Meglévő tartalom szerkesztése:**
+
     - Nyisd meg az egyik korábban létrehozott "Guides" vagy "Tutorials" oldalt, és végezz rajta valamilyen tartalmi módosítást (pl. adj hozzá egy új bekezdést, javíts ki egy elírást, frissíts egy linket).
+    - Akár szándékosan illessz be egy törött linket, hogy megfigyelhesd a build és teszt folyamataid viselkedését. Szerinted az ilyen eseteket, milyen szigorúan kéne kezelni? Ha van kedved, ehhez mérten állíts be szabályokat a workflow-idban.
 
 1.  **Új blogbejegyzés írása (opcionális):**
+
     - Hozz létre egy új Markdown fájlt a `blog` mappában (pl. `YYYY-MM-DD-my-latest-thoughts.md`).
     - Írj egy rövid blogbejegyzést a Docusaurus használatával kapcsolatos tapasztalataidról vagy bármilyen más releváns témáról. Adj neki címet és esetleg címkéket (tags) a frontmatter-ben.
 
@@ -47,18 +56,14 @@ Végezz el néhány egyszerűbb módosítást a Docusaurus oldaladon ezen az új
 
 Mentsd el a munkádat.
 
-1.  **Commit:**
+1.  **Változások hozzáadása és commit:**
 
     ```bash
     git add .
     git commit -m "Docs: Update content and prepare for review" 
     ```
-    
-    :::tip
-    Használj informatív commit üzenetet!
-    :::
 
-1.  **Push:**
+1.  **Változások feltöltése:**
 
     ```bash
     git push -u origin feature/update-content-and-review
@@ -81,9 +86,15 @@ Ez a rész segít megérteni, hogyan működnek a minőségbiztosítási kapuk a
     - **Kötelező beállítások a szimulációhoz:**
 
         - **Require a pull request before merging:** Ezt pipáld be.
-            - **Require approvals:** Pipáld be, és állítsd be, hogy legalább `1` jóváhagyás szükséges legyen. (Megkérhetsz egy kurzustársat, vagy az oktatót a review-ra. Ha magadnak csinálod, akkor egy másik GitHub fiókkal, vagy ideiglenesen kikapcsolhatod ezt a konkrét PR merge-eléséhez, miután "elvileg" megtörtént a review.)
+            - **Require approvals:** Pipáld be, és állítsd be, hogy legalább `1` jóváhagyás szükséges legyen. (Megkérhetsz egy kurzustársat, vagy az oktatót a review-ra. Ha magadnak csinálod, akkor egy másik GitHub fiókkal, vagy ideiglenesen kikapcsolhatod ezt a PR merge-eléséhez, miután "elvileg" megtörtént a review.)
         - **Require status checks to pass before merging:** Pipáld be.
             - Ha létrehoztad a `test.yml` workflow-t (3. részfeladat), akkor annak itt meg kell jelennie mint kötelezően sikeres "status check". Válaszd ki! Ha nem hoztad létre, akkor ezt a részt most kihagyhatod, vagy létrehozhatod a `test.yml`-t és hozzáadhatod ehhez a PR-hez.
+
+              :::tip Légy kreativ!
+              A szabályok és követelmények, aminek való megfelelést tesztelni szeretnéd a workflow segítségével, itt válnak igazán relevánssá. Az alapvető hozzáállásunk, a szigor mértéke, illetve a konkrét követelmények, amiknek a dokumentációt meg szeretnénk feleltetni meghatározzák, hogy ez a CI/CD fázis, hogyan zárul.
+
+              Érdemes itt is fontosság szerint rendszerezni a különböző hibatípusokat és azok hatásait, annak érdekében, hogy hatékony megelőző stratégiákat alakítsunk ki a folyamatainkban. Mi a célja az ellenőrzésnek? Milyen minőségi eltéréseket vagyunk még képesek átengedni? Mikről akarunk (csak) tudni, mi az, ami kritikus és azonnali beavatkozást igényel, mi az, ami ráér, de tudni akarunk róla?
+              :::
 
 1.  **Review kérése és visszajelzés (szimulált):**
 
@@ -93,6 +104,7 @@ Ez a rész segít megérteni, hogyan működnek a minőségbiztosítási kapuk a
 
 1.  **Status check ellenőrzése:**
     - Figyeld meg, hogy a PR-en a beállított status check (pl. a `Test Docusaurus Build` workflow) lefut-e. Ennek sikeresnek kell lennie a merge-eléshez.
+    - Próbáld ki, mi történik, ha szándékosan hibás kódot próbálnál áttolni a status check-en.
 
 ## 4.6 Pull request merge-elése
 
@@ -101,9 +113,9 @@ Miután a (szimulált) review megtörtént, a kért változtatások elkészülte
 1.  **Merge:** A GitHub felületén merge-eld a Pull Requestet a `main` branch-be. 
 
     :::tip
-    Használhatod a "Squash and merge" vagy "Rebase and merge" opciót is, ha ismered őket, de egy sima "Merge pull request" is tökéletes.
+    Használhatod a **Squash and merge** vagy **Rebase and merge** opciót is, ha ismered őket, de egy sima **Merge pull request** is tökéletes.
     :::
-1.  **Branch törlése (Opcionális):** A merge után a GitHub felajánlja a `feature/update-content-and-review` branch törlését. Ez bevett gyakorlat, de a házi feladat szempontjából most **NE TÖRÖLD**, hogy az oktató láthassa a branch-en végzett munkát is.
+1.  **Branch törlése (szimulált):** A merge után a GitHub felajánlja a `feature/update-content-and-review` branch törlését. Ez bevett gyakorlat valós projektek esetén, hogy a publikus fájlrendszer letisztult maradjon. A házifeladat szempontjából most **NE TÖRÖLD**, hogy az oktató láthassa a branch-en végzett munkát is.
 
 ## 4.7 Deployment ellenőrzése
 
@@ -123,4 +135,4 @@ ___
 | **Merge** | A PR (szimulált review után) sikeresen merge-elve lett a `main` branch-be. A feature branch ne legyen törölve. |
 | **(Opcionális) Branch Protection** | Demonstráltad a branch protection rule-ok használatát (pl. kötelező review, kötelező status check a merge előtt). |
 | **CI/CD és publikálás** | A `main` branch-be történt merge után a CI/CD folyamat sikeresen deploy-olta a frissített oldalt GitHub Pages-re. |
-| **Változások Láthatósága** | A 4.2 pontban végrehajtott változtatások láthatóak az élő, publikált GitHub Pages oldalon. |
+| **Változások láthatósága** | A 4.2 pontban végrehajtott változtatások láthatóak az élő, publikált GitHub Pages oldalon. |
