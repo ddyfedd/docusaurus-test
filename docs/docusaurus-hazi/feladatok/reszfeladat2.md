@@ -3,6 +3,9 @@ title: 2. feladat - API dokumentáció
 sidebar_position: 2
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 # 2. feladat: Dinamikus tartalom - API dokumentáció generálása OpenAPI specifikációból
 
 Ebben a feladatban egy OpenAPI specifikáció alapján generált API dokumentációval fogod bővíteni az oldaladat a kurzuson bemutatott [`@paloaltonetworks/docusaurus-openapi-docs`](https://github.com/PaloAltoNetworks/docusaurus-openapi-docs) plugin segítségével.
@@ -42,7 +45,7 @@ npm install @paloaltonetworks/docusaurus-openapi-docs
 ### OpenAPI specifikáció előkészítése
 
 1.  Hozz létre egy `openapi` mappát a projekt gyökerében.
-1.  Mentsd el ide a [Petstore API](https://petstore3.swagger.io/openapi.yaml) specifikációját `petstore.yaml` néven. Használhatsz más v3-as OpenAPI specifikációt is.
+1.  Mentsd el ide a [Petstore API](https://petstore3.swagger.io/openapi.yaml) specifikációját `petstore.yaml` néven. Használhatsz más v3-as OpenAPI specifikációt is, pl. az API-s házival létrehozottat.
 
 ### Plugin konfigurálása
 
@@ -82,24 +85,44 @@ module.exports = { // Vagy export default, ha ES modult használsz
 
 1. Futtasd a plugin parancsát a Markdown fájlok generálásához (a parancs pontos formáját ellenőrizd a plugin dokumentációjában, általában valami hasonló):
 
-```bash
-npm run docusaurus gen-api-docs all
-# Vagy: npx docusaurus gen-api-docs all
-# Vagy: yarn docusaurus gen-api-docs all
-```
+    <Tabs>
+    <TabItem value='npm' label='NPM'>
+
+    ```bash
+    npm run docusaurus gen-api-docs all
+    ```
+
+    </TabItem>
+    <TabItem value='yarn' label='Yarn'>
+
+    ```bash
+    yarn docusaurus gen-api-docs all
+    ```
+
+    </TabItem>
+    <TabItem value='npx' label='NPX'>
+
+    ```bash
+    npx docusaurus gen-api-docs all
+    ```
+
+    </TabItem>
+    </Tabs>
+
 
 1. Ellenőrizd, hogy a fájlok helyesen létrejöttek-e a konfigurált kimeneti mappában (`outputDir`).
 
-1. Indítsd el a fejlesztői szervert (`npm start`), és ellenőrizd, hogy a fájlok létrejöttek-e a `docs/petstore-api` mappában.
+1. Indítsd el a fejlesztői szervert (`npm start`), és ellenőrizd, hogy az oldalak elérhetők a fájlok elérési útján, pl. `docs/petstore-api/add-pet`.
 
 ### Navigáció beállítása
+
+Ahhoz, hogy a létrehozott API dokumentációt a navigációban is elérhetővé tegyük, el kell végeznünk néhány konfigurációs lépést.
 
 1. **Oldalsáv (`sidebars.js`) módosítása:**
 
     Hivatkozz a generált API oldalsávra. Például, ha létrehozol egy külön oldalsávot az API dokumentációnak:
 
-    ```javascript
-    // sidebars.js
+    ```javascript title="sidebars.js"
     module.exports = {
       // ...meglévő oldalsávjaid (pl. tutorialSidebar, guideSidebar)...
       myApiSidebar: require('./docs/petstore-api/sidebar.js'), // Hivatkozás a plugin által generált oldalsáv fájlra
@@ -107,15 +130,14 @@ npm run docusaurus gen-api-docs all
     ```
 
     :::tip
-    Természetesen integrálhatod egy meglévő oldalsávba is, ha az jobban illeszkedik a struktúrádhoz. Az 1. feladatban létrehozott `tutorialSidebar` vagy `myDocumentationSidebar` (ha közös oldalsávot használsz) is bővíthető.ű
+    Természetesen integrálhatod egy meglévő oldalsávba is, ha az jobban illeszkedik a struktúrádhoz. Az 1. feladatban létrehozott `tutorialSidebar` vagy egy egyedi `myDocumentationSidebar` (ha közös oldalsávot használsz) is bővíthető.
     :::
 
 1. **Navigációs sáv (`docusaurus.config.js`) frissítése:**
 
     Adj hozzá egy linket a fő navigációs sávhoz, ami az API dokumentációra mutat.
 
-    ```javascript
-    // docusaurus.config.js
+    ```javascript title="docusaurus.config.js"
     // ...
     themeConfig: {
       // ...meglévő themeConfig...
@@ -160,9 +182,12 @@ Ezt a Pull Requestet is merge-lheted, de **NE TÖRÖLD A BRANCH-ET!**
 
 ___
 
-## Elvárás a 2. részfeladat végére
+## Elvárás a 2. feladat végére
 
-- A `main` branch-ből létrehozott `feature/api-documentation` (vagy hasonló nevű) branch létezik a GitHub repository-ban.
-- Ez a branch tartalmazza a telepített és konfigurált `@paloaltonetworks/docusaurus-openapi-docs` plugint.
-- A Docusaurus oldal kiegészült egy (pl. Petstore) API dokumentációval, ami elérhető a navigációs sávon és az oldalsávon keresztül.
-- Egy Pull Request mutat a `feature/api-documentation` branch-ből a `main` branch-be, ami merge-elve lett.
+| Kritérium | Elvárt állapot |
+| --------- | -------------- |
+| **`feature/api-documentation` branch** | Létezik egy `feature/api-documentation` (vagy hasonló nevű) branch a GitHub repository-ban, a `main` branch-ből kiindulva. |
+| **OpenAPI plugin** | A `@paloaltonetworks/docusaurus-openapi-docs` plugin telepítve és helyesen van konfigurálva a `docusaurus.config.js`-ben. |
+| **API dokumentáció generálása** | Az API dokumentáció (pl. Petstore API alapján) sikeresen legenerálódott a megadott `outputDir`-be. |
+| **Navigáció (API)** | Az API dokumentáció elérhető a Docusaurus oldal navigációs sávján és/vagy oldalsávján keresztül. |
+| **Pull Request (API)** | Egy merge-elt (de a branch nem törölt) PR mutat a `feature/api-documentation` branch-ből a `main` branch-be. |
