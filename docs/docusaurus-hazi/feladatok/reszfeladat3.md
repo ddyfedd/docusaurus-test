@@ -5,7 +5,7 @@ sidebar_position: 3
 
 # 3. Részfeladat: Automatizálás - CI/CD folyamat beállítása GitHub Actions segítségével
 
-Ebben a részben egy egyszerű CI/CD (Continuous Integration/Continuous Deployment) folyamatot fogsz beállítani GitHub Actions segítségével, hogy a Docusaurus oldalad automatikusan build-eljen és publikálódjon GitHub Pages-re.
+Ebben a feladatban egy egyszerű CI/CD (Continuous Integration/Continuous Deployment) folyamatot fogsz beállítani GitHub Actions segítségével, hogy a Docusaurus oldalad automatikusan build-eljen és publikálódjon GitHub Pages-re.
 
 :::warning[Fontos]
 Ezt a részfeladatot egy **új branch-en** végezd el, amit a `main` branch-ből hozol létre (pl. `feature/cicd-setup`). 
@@ -13,17 +13,21 @@ Ezt a részfeladatot egy **új branch-en** végezd el, amit a `main` branch-ből
 
 ## Mielőtt elkezdenéd
 
-1.  **Visszaváltás `main`-re és új branch létrehozása:**
+1.  **Visszaváltás `main`-re és frissítés:**
 
     ```bash
     git checkout main
     git pull origin main
+    ```
+    :::note
+    Győződj meg róla, hogy a `main` branch-ed a legfrissebb állapotban van, mielőtt új branch-et hozol létre.
+    :::
+
+1.  **Új branch létrehozása:**
+
+    ```bash
     git checkout -b feature/cicd-setup
     ```
-    
-    :::note
-    Győződj meg róla, hogy a `main` a legfrissebb (`git pull origin main`, ha szükséges)
-    :::
 
 ## 3.1 Docusaurus konfigurálása GitHub Pages-hez
 
@@ -121,10 +125,10 @@ Automatizáljuk a publikálást.
     - Ellenőrizd a `node-version`-t, hogy megfeleljen a projektednek.
     - Ha az API dokumentáció generált fájljait nem commitolod (ajánlott nem commitolni őket, és a CI/CD-vel generáltatni), akkor a `Build API Docs` lépés szükséges. Ha commitolod őket, ez a lépés kihagyható. 
     
-        A házi feladat során korábban commitoltuk őket, de a CI/CD során jobb, ha a forrásból (OpenAPI spec) generálódnak - ebben az esetben az output mappát hozzá is adhatod a `.gitignore`-hoz, hogy ne zavarjon fejlesztés közben a sok új fájl, ami a generáláskor létrejön. Döntsd el, melyik utat követed, és szükség szerint módosítsd a workflow-t. Ebben a példában benne hagytam a generálást.
+        [Korábban hozzáadtuk az output mappát a `.gitignore`-hoz](./reszfeladat2#markdown-fájlok-generálása), így a CI/CD során a build job az aktuális forrásból fogja generálni a friss API doksit. Neked elég csak a YAML fájlok kezelésével törődnöd.
     :::
 
-1.  **Repository beállítások GitHub Actions-höz:** A GitHub repository **Settings -> Actions -> General** részében a **Workflow permissions** alatt győződj meg róla, hogy a **Read and write permissions** van kiválasztva, vagy legalábbis a GitHub Actions képes írni a `gh-pages` branch-et és kezelni a Pages beállításokat. Az `id-token: write` permission a `actions/deploy-pages@v4` újabb verzióihoz szükséges.
+1.  **Repository beállítások GitHub Actions-höz:** A GitHub repository **Settings -> Actions -> General** részében a **Workflow permissions** alatt győződj meg róla, hogy a **Read and write permissions** van kiválasztva.
 
 :::info[Segítség]
 [Docusaurus Deployment - Triggering deployment with GitHub Actions](https://docusaurus.io/docs/deployment#triggering-deployment-with-github-actions)
@@ -144,19 +148,19 @@ Mentsük el a CI/CD konfigurációt és teszteljük.
         git push -u origin feature/cicd-setup
         ```
 
-1.  **Pull request létrehozása és merge-elése a `main` branch-be:**
+1.  **Pull Request létrehozása és merge-elése a `main` branch-be:**
     - A GitHub felületén hozz létre egy Pull Requestet a `feature/cicd-setup` branch-ből a `main` branch-be. Adj neki címet és leírást.
-    - **Most, ennél a PR-nél, végezd el a merge-elést a `main` branch-be.** (Feltételezzük, hogy a reviewer ezt a PR-t "jóváhagyta".)
+    - **Végezd el a merge-elést a `main` branch-be.** (Feltételezzük, hogy a reviewer ezt a PR-t "jóváhagyta".)
 
 1.  **Deployment ellenőrzése:**
     - A `main` branch-be történő merge után a `deploy.yml` workflow-nak automatikusan el kell indulnia.
     - Nyisd meg a GitHub repository-dat, és az **Actions** fülön ellenőrizd, hogy a workflow sikeresen lefutott-e.
-    - Ha sikeres volt, a GitHub repository **Settings -> Pages** részében látnod kell, hogy az oldalad publikálva lett a konfigurált `gh-pages` branch-ről. Az URL-nek meg kell jelennie (pl. `https://<FELHASZNALONEVED>.github.io/<REPOSITORY_NEVE>/`).
+    - Ha sikeres volt, a GitHub repository **Settings -> Pages** részében látnod kell, hogy az oldalad publikálva lett. Az URL-nek meg kell jelennie a build log-ban (pl. `https://<FELHASZNALONEVED>.github.io/<REPOSITORY_NEVE>/`).
     - Látogass el a publikált URL-re, és ellenőrizd, hogy minden megfelelően működik-e.
 
-## 3.4 (Opcionális) Teszt workflow hozzáadása pull requestekhez
+## 3.4 (Opcionális) Teszt workflow hozzáadása Pull Requestek-hez
 
-Ez a lépés segít abban, hogy a hibás kód ne kerüljön be a `main` branch-be.
+Ez a lépés segít abban, hogy hibás kód ne kerülhessen be a `main` branch-be.
 
 1.  **Workflow fájl létrehozása (`test.yml`):**
 
@@ -180,14 +184,14 @@ Ez a lépés segít abban, hogy a hibás kód ne kerüljön be a `main` branch-b
             uses: actions/setup-node@v4
             with:
               node-version: '18' # Vagy a projekt által használt Node.js verzió
-              cache: 'npm'
+              cache: 'yarn'
+
           - name: Install dependencies
-            run: npm ci
-          - name: Generate API Docs (if needed)
-            # Ha a generált API doksik nincsenek commitolva
-            run: npm run docusaurus gen-api-docs all
+            run: yarn install --frozen-lockfile
+          - name: Build API docs
+            run: yarn docusaurus gen-api-docs all
           - name: Build
-            run: npm run build
+            run: yarn build
     ```
 
 1.  **Commit és push (egy új branch-en tesztelve):**

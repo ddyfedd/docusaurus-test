@@ -83,7 +83,7 @@ module.exports = { // Vagy export default, ha ES modult használsz
 
 ### Markdown fájlok generálása
 
-1. Futtasd a plugin parancsát a Markdown fájlok generálásához (a parancs pontos formáját ellenőrizd a plugin dokumentációjában, általában valami hasonló):
+1. **Parancs futtatása:** Futtasd a plugin parancsát a Markdown fájlok generálásához (a parancs pontos formáját ellenőrizd a plugin dokumentációjában, általában valami hasonló):
 
     <Tabs>
     <TabItem value='npm' label='NPM'>
@@ -109,10 +109,28 @@ module.exports = { // Vagy export default, ha ES modult használsz
     </TabItem>
     </Tabs>
 
+1. **Kimeneti mappa ellenőrzése:** Ellenőrizd, hogy a fájlok helyesen létrejöttek-e a konfigurált kimeneti mappában (`outputDir`).
 
-1. Ellenőrizd, hogy a fájlok helyesen létrejöttek-e a konfigurált kimeneti mappában (`outputDir`).
+1. **`.gitignore` frissítése (ajánlott):** 
 
-1. Indítsd el a fejlesztői szervert (`npm start`), és ellenőrizd, hogy az oldalak elérhetők a fájlok elérési útján, pl. `docs/petstore-api/add-pet`.
+    Add hozzá a generált API dokumentáció kimeneti mappáját a `.gitignore` fájlodhoz. Ez megakadályozza, hogy a generált Markdown fájlok bekerüljenek a Git verziókövetésbe.
+
+    ```text title=".gitignore"
+    # ... egyéb bejegyzések ...
+
+    # Generated API docs
+    docs/petstore-api/
+    ```
+
+    :::tip Miért hasznos ez?
+    - **Tiszta változáskövetés:** Csak az OpenAPI specifikációs fájl (pl. `petstore.yaml`) változásait kell követned. A Markdown fájlok ebből automatikusan generálódnak.
+    - **Automatizálás:** A CI/CD folyamat (amit a [3. feladatban](./reszfeladat3) állítasz be) felelős lesz a Markdown fájlok friss generálásáért minden build során.
+    - **Lokális fejlesztés:** Attól függetlenül, hogy a generált fájlok nincsenek a Gitben, lokálisan továbbra is legenerálhatod őket (`npm run docusaurus gen-api-docs all`), hogy lásd az előnézetet és szerkeszthesd az API dokumentációt (pl. plusz információk hozzáadásával a generált fájlokhoz). **Ha az OpenAPI specifikáció (YAML) változik, újra kell generálni a fájlokat a változások megjelenítéséhez.**
+    :::
+
+1. **Fejlesztői szerver indítása és ellenőrzés:** 
+
+    Indítsd el a fejlesztői szervert (`npm start`), és ellenőrizd, hogy a generált API dokumentáció megjelenik-e a `docs/petstore-api/add-pet` útvonalon (vagy ahogy a [navigációban beállítod](#navigáció-beállítása)).
 
 ### Navigáció beállítása
 
