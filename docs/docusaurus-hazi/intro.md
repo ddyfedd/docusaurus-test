@@ -5,7 +5,7 @@ sidebar_position: 1
 
 # Docusaurus projekt felépítése: Hozd létre saját dokumentációs oldalad!
 
-Ez a kurzus összegző és egyben utolsó házi feladata. Ennek a feladatnak a célja, hogy a Docusaurus-központú, illetve gyakorlati órákon tanultakat összegezd és a ténylegesen is kipróbáld. 
+Ez a kurzus összegző és egyben utolsó házi feladata. Ennek a feladatnak a célja, hogy a Docusaurus-központú, illetve gyakorlati órákon tanultakat összegezd és ténylegesen is kipróbáld. 
 
 Egy saját, működő Docusaurus dokumentációs oldalt fogsz létrehozni, verziókezelni Git-tel, API dokumentációval bővíteni, és egy egyszerű CI/CD folyamaton keresztül publikálni GitHub Actions segítségével.
 
