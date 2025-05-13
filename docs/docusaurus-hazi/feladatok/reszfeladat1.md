@@ -46,7 +46,8 @@ Először is, hozzuk létre a Docusaurus projektünk alapjait.
 1. **Egyszerű szerkesztés:** Próbálj meg egy egyszerű Markdown fájlt létrehozni a `docs` mappában, és nézd meg, hogyan jelenik meg az oldalon. Figyelj a szükséges 'frontmatter' meglétére (`title`, `sidebar_position`) 
 
 :::info[Segítség]
-[Docusaurus Installation](https://docusaurus.io/docs/installation), [Project Structure](https://docusaurus.io/docs/category/guides)
+- [Docusaurus Installation](https://docusaurus.io/docs/installation)
+- [Project Structure](https://docusaurus.io/docs/category/guides)
 :::
 
 ### GitHub repository létrehozása és projekt feltöltése
