@@ -3,34 +3,37 @@ title: 1. feladat - Alapok
 sidebar_position: 1
 ---
 
-# 1. Részfeladat: Docusaurus Projekt Alapok, Struktúraátalakítás és Új Tartalmi Szekció
+# 1. feladat: Docusaurus projekt alapok, struktúraátalakítás és új tartalmi szekció
 
-Ebben a részben létrehozod a saját Docusaurus projektedet, megismerkedsz az alapvető struktúrával, feltöltöd egy GitHub repository-ba, majd egy új branch-en komolyabb strukturális átalakításokat és bővítéseket hajtasz végre.
+Ebben a feladatban létrehozod a saját Docusaurus projektedet, megismerkedsz az alapvető struktúrával, feltöltöd egy GitHub repository-ba, majd egy új branch-en komolyabb strukturális átalakításokat és bővítéseket hajtasz végre.
 
-## 1.1 Alapvető Docusaurus Projekt és GitHub Feltöltés (`main` Branch)
+## 1.1 Alapvető Docusaurus projekt és GitHub feltöltés (`main` branch)
 
-### Docusaurus Telepítése és Projekt Inicializálása
+### Docusaurus telepítése és projekt inicializálása
 
 Először is, hozzuk létre a Docusaurus projektünk alapjait.
 
 1. **Prancssor megnyitása:** Nyiss meg egy parancssoros terminált a gépeden.
 
 1.  **Node.js ellenőrzése:** Győződj meg róla, hogy a gépeden telepítve van a Node.js (LTS verzió ajánlott).
+
     ```bash
     node -v
     npm -v
     ```
 
 1.  **Docusaurus projekt létrehozása:** Navigálj egy olyan mappába, ahová létre szeretnéd hozni az új projektet. Hozd létre a projektet a `classic` template alapján. A `my-docs-site` helyett válassz egyedi nevet. Válaszd a `JavaScript` opciót, ennek egyszerűbb átlátni a konfigurációját.
+
     ```bash
     npx create-docusaurus@latest my-docs-site classic
     ```
 
     :::note
-     Ha otthonosan mozogsz a fejlesztői csomagok világában, itt más telepítési opcióval is élhetsz, pl. más package manager, konfiguráció, stb.
+     Ha otthonosan mozogsz a fejlesztői csomagok világában, itt más telepítési opcióval is élhetsz, pl. más package manager, konfiguráció, stb. [Docusaurus: Installation](https://docusaurus.io/docs/installation)
     :::
 
 1.  **Navigálás és indítás:** Lépj be a projekt mappájába, és indítsd el a fejlesztői szervert.
+
     ```bash
     cd my-docs-site
     npm start
@@ -38,21 +41,24 @@ Először is, hozzuk létre a Docusaurus projektünk alapjait.
     Az oldalnak elérhetőnek kell lennie a böngészőben, általában `http://localhost:3000` címen. Navigálj kicsit az oldalon, ismerkedj meg az alapvető felhasználói élménnyel. Érdemes lehet a már meglévő tartalmakat átolvasni, hogy átlásd a szerkesztés alapjait.
 
 1.  **Ismerkedés a struktúrával:** Nézd át a generált mappákat (`docs/`, `blog/`, `src/pages/`) és konfigurációs fájlokat (`docusaurus.config.js`, `sidebars.js`).
-    * Módosítsd a `docusaurus.config.js` fájlban az oldal címét (`title`) és a `tagline`-t a saját projektednek megfelelően.
+    - Módosítsd a `docusaurus.config.js` fájlban az oldal címét (`title`) és a `tagline`-t a saját projektednek megfelelően.
 
-1. **Egyszerű szerkesztés:** Próbálj meg egy egyszerű Markdown fájlt létrehozni a `docs` mappában, és nézd meg, hogyan jelenik meg az oldalon. Figyelj a szükséges ‘frontmatter’ meglétére (title, sidebar_position) 
+1. **Egyszerű szerkesztés:** Próbálj meg egy egyszerű Markdown fájlt létrehozni a `docs` mappában, és nézd meg, hogyan jelenik meg az oldalon. Figyelj a szükséges 'frontmatter' meglétére (`title`, `sidebar_position`) 
 
-*Segítség:* [Docusaurus Installation](https://docusaurus.io/docs/installation), [Project Structure](https://docusaurus.io/docs/category/guides)
+:::info[Segítség]
+[Docusaurus Installation](https://docusaurus.io/docs/installation), [Project Structure](https://docusaurus.io/docs/category/guides)
+:::
 
-### GitHub Repository Létrehozása és Projekt Feltöltése
+### GitHub repository létrehozása és projekt feltöltése
 
 Most verziókezeljük a projektünket.
 
-1.  **Új repository GitHubon:** Hozz létre egy új, publikus repository-t a GitHubon. Ne inicializáld `README`, `.gitignore` vagy `licenc` fájllal, ezeket a Docusaurus projekt már tartalmazza.
+1.  **Új repository GitHubon:** Hozz létre egy új, publikus repository-t a GitHubon. **Ne inicializáld `README`, `.gitignore` vagy `licenc` fájllal**, ezeket a Docusaurus projekt már tartalmazza.
 
     A feltöltéshez a legegyszerűbb, ha követed a frissen létrehozott repo-dban szereplő instrukciókat. Az ott szereplő parancsokat futtasd egy terminálban.
 
 1.  **Lokális git inicializálás:** A Docusaurus projekted mappájában:
+
     ```bash
     git init
     git add .
@@ -60,25 +66,29 @@ Most verziókezeljük a projektünket.
     ```
 
 1.  **Távoli repository hozzáadása és feltöltés:**
+
     ```bash
     git remote add origin <A_TE_REPOSITORY-D_URL-JE>
     git push -u origin main
     ```
 
-*Segítség:* [Adding locally hosted code to GitHub](https://docs.github.com/en/migrations/importing-source-code/using-the-command-line-to-import-a-git-repository/adding-locally-hosted-code-to-github)
+:::info[Segítség]
+[Adding locally hosted code to GitHub](https://docs.github.com/en/migrations/importing-source-code/using-the-command-line-to-import-a-git-repository/adding-locally-hosted-code-to-github)
+:::
 
-## 1.2 Haladóbb Szerkesztések és Struktúraátalakítás (Új Branch-en)
+## 1.2 Haladóbb szerkesztések és struktúraátalakítás (új branch-en)
 
 Miután az alap projekt fent van a `main` branch-en, a következő lépéseket egy **új branch-en** végezd el.
 
 ### Új branch létrehozása
 
 Nevezd el például `feature/advanced-structure`-nek:
+
 ```bash
 git checkout -b feature/advanced-structure
 ```
 
-### Meglévő Dokumentáció Átstrukturálása (`/docs/tutorials`)
+### Meglévő dokumentáció átstrukturálása (`/docs/tutorials`)
 
 Szervezzük át a kezdeti dokumentációt.
 
@@ -88,42 +98,66 @@ Szervezzük át a kezdeti dokumentációt.
 
 1.  **Konfigurációk frissítése az átstrukturáláshoz:**
 
-    * **`sidebars.js` módosítása:** Frissítsd az oldalsáv konfigurációját, hogy az elérési utak a `tutorials/` előtaggal kezdődjenek.
-        ```javascript
-        // sidebars.js - Példa
+    - **`sidebars.js` módosítása:** Frissítsd az oldalsáv konfigurációját, hogy az elérési utak a `tutorials/` előtaggal kezdődjenek.
+
+        ```javascript title="sidebars.js"
         const sidebars = {
           tutorialSidebar: [{type: 'autogenerated', dirName: 'tutorials'}],
+
+          //...
         };
         module.exports = sidebars;
         ```
 
-    * **`docusaurus.config.js` (navbar) Frissítése:**
-        * Ha a navigációs sávban (`themeConfig.navbar.items`) volt közvetlen link a régi dokumentációs oldalakra, frissítsd az elérési utakat (pl. `to: '/docs/tutorials/intro'`).
+    - **`docusaurus.config.js` (navbar) Frissítése:** Ha a navigációs sávban (`themeConfig.navbar.items`) volt közvetlen link a régi dokumentációs oldalakra, frissítsd az elérési utakat (pl. `to: '/docs/tutorials/intro'`).
 
-            :::note
-            A törött linkeket egy build futtatással is könnyen ellenőrizheted. 
-            :::
+        ```javascript title="docusaurus.config.js"
+        navbar: {
+          title: 'My Site',
+          logo: {
+            alt: 'My Site Logo',
+            src: 'img/logo.svg',
+          },
+          items: [
+            {
+              to: '/docs/tutorials/intro',
+              position: 'left',
+              label: 'Tutorial',
+            },
+            {to: '/blog', label: 'Blog', position: 'left'},
+          ],
+        },
+        ```
+
+        :::note
+        A törött linkeket egy `build` futtatással is könnyen ellenőrizheted. Lehetséges, hogy a `themeConfig.footer` is tartalmaz törött linkeket.
+        :::
 
 1.  **Ellenőrzés:** Indítsd el a fejlesztői szervert (`npm start`), és ellenőrizd, hogy az oldal hibátlanul felépül-e, a linkek a "Tutorials" szekcióban működnek-e, és az oldalsáv helyesen jelenik-e meg.
 
-*Segítség:* [Docusaurus Sidebar Docs](https://docusaurus.io/docs/sidebar)
+:::info[Segítség]
+[Docusaurus Sidebar Docs](https://docusaurus.io/docs/sidebar)
+:::
 
-### Új Dokumentációs Szekció Létrehozása (`/docs/guides`)
+### Új dokumentációs szekció létrehozása (`/docs/guides`)
 
 Bővítsük a dokumentációt egy új szekcióval.
 
 1.  **`guides` almappa létrehozása:** A `docs` mappán belül hozz létre egy `guides` almappát.
 
-2.  **Új oldalak és almappák létrehozása:**
-    * A `guides` mappában hozz létre több Markdown oldalt (legalább 2-3 oldalt, pl. `installation-guide.md`, `configuration-tips.md`).
-    * Hozz létre legalább egy almappát is a `guides`-on belül (pl. `advanced-topics`), és abba is helyezz el legalább 2 oldalt (pl. `advanced-topics/api-integration.md`).
+1.  **Új oldalak és almappák létrehozása:**
 
-3.  **Frontmatter gyakorlása:**
-    * Használd a `sidebar_position` frontmatter attribútumot az oldalak sorrendjének beállításához.
-    * Használj `title`-t, ha az oldalsávban más címet szeretnél megjeleníteni.
-    * Definiálj kategóriákat `_category_.json` fájlok segítségével. Adj meg nekik `label`-t és `position`-t.
-        Példa egy `docs/guides/advanced-topics/_category_.json` fájlra:
-        ```json
+    - A `guides` mappában hozz létre több Markdown oldalt (legalább 2-3 oldalt, pl. `installation-guide.md`, `configuration-tips.md`).
+    - Hozz létre legalább egy almappát is a `guides`-on belül (pl. `advanced-topics`), és abba is helyezz el legalább 2 oldalt (pl. `advanced-topics/api-integration.md`).
+
+1.  **Frontmatter gyakorlása:**
+    - Használd a `sidebar_position` frontmatter attribútumot az oldalak sorrendjének beállításához.
+    - Használj `title`-t, ha az oldalsávban más címet szeretnél megjeleníteni.
+    - Definiálj kategóriákat `_category_.json` fájlok segítségével. Adj meg nekik `label`-t és `position`-t.
+    
+      Példa egy `docs/guides/advanced-topics/_category_.json` fájlra:
+
+        ```json title="_category_.json"
         {
           "label": "Haladó Témák",
           "position": 2,
@@ -134,15 +168,19 @@ Bővítsük a dokumentációt egy új szekcióval.
         }
         ```
 
-*Segítség:* [Docusaurus Docs - Front Matter](https://docusaurus.io/docs/api/plugins/@docusaurus/plugin-content-docs#front-matter), [Sidebar - Category Generated Index](https://docusaurus.io/docs/sidebar/category-generated-index)
+:::info[Segítség]
+- [Docusaurus Docs - Siedebar](https://docusaurus.io/docs/sidebar)
+- [Docusaurus Docs - Front Matter](https://docusaurus.io/docs/api/plugins/@docusaurus/plugin-content-docs#markdown-front-matter)
+- [Sidebar - Category Generated Index](https://docusaurus.io/docs/sidebar/items#generated-index-page)
+:::
 
-### Új "Guides" Szekció Megjelenítése
+### Új "Guides" szekció megjelenítése
 
 Integráljuk az új szekciót a navigációba.
 
 1.  **Navbar frissítése:** Adj hozzá egy új linket a `docusaurus.config.js` `themeConfig.navbar.items` tömbjéhez, ami az új `guides` szekcióra mutat.
-    ```javascript
-    // docusaurus.config.js
+
+    ```javascript title="docusaurus.config.js"
     // ...
     themeConfig: {
       navbar: {
@@ -171,8 +209,8 @@ Integráljuk az új szekciót a navigációba.
     ```
 
 1.  **Sidebar konfigurálása a "Guides"-hoz:** A `sidebars.js` fájlban:
-      ```javascript
-      // sidebars.js
+
+      ```javascript title="sidebars.js"
       const sidebars = {
         tutorialSidebar: [ /* ... a tutorials konfigurációja ... */ ],
         guideSidebar: [ // Új oldalsáv a guides-nak
@@ -184,22 +222,22 @@ Integráljuk az új szekciót a navigációba.
       };
       module.exports = sidebars;
       ```
-      Ebben az esetben a navbar-ban a "Guides" linknek `type: 'docSidebar', sidebarId: 'guideSidebar'` kell lennie.
 
 1.  **Ellenőrzés:** Indítsd el a fejlesztői szervert (`npm start`), és győződj meg róla, hogy az új "Guides" szekció és annak tartalma helyesen jelenik meg.
 
-### Változások Feltöltése és Pull Request Létrehozása
+### Változások feltöltése és pull request létrehozása
 
-Mentsük el a munkánkat a GitHubra.
+Mentsük el a munkánkat a GitHub-ra.
 
 1.  **Commit és push:**
+
     ```bash
     git add .
     git commit -m "Feat: Restructure docs, add guides section with frontmatter"
     git push -u origin feature/advanced-structure
     ```
 
-2.  **Pull Request létrehozása:** A GitHub felületén hozz létre egy Pull Requestet a `feature/advanced-structure` branch-ből a `main` branch-be. Adj neki egyértelmű címet és rövid leírást.
+1.  **Pull Request létrehozása:** A GitHub felületén hozz létre egy Pull Request-et a `feature/advanced-structure` branch-ből a `main` branch-be. Adj neki egyértelmű címet és rövid leírást.
 
 :::warning[Fontos]
 Ezt a Pull Requestet merge-lheted, viszont **NE TÖRÖLD A BRANCH-ET!** Ez a PR és a branch arra szolgál, hogy az oktató átnézhesse és értékelhesse az első részfeladatot.
@@ -207,11 +245,11 @@ Ezt a Pull Requestet merge-lheted, viszont **NE TÖRÖLD A BRANCH-ET!** Ez a PR 
 
 ___
 
-## Elvárás az 1. Részfeladat Végére
+## Elvárás az 1. részfeladat végére
 
-* Egy alap Docusaurus projekt van a `main` branch-en.
-* Egy `feature/advanced-structure` (vagy hasonló nevű) branch létezik a GitHub repository-ban, ami tartalmazza:
-    * A `docs/tutorials` mappába áthelyezett eredeti dokumentációt, helyesen konfigurált oldalsávval és navigációval.
-    * Egy új `docs/guides` mappát több oldallal, almappákkal, ahol a frontmatter (`sidebar_position`, `_category_.json` stb.) használata látható.
-    * A `guides` szekció megjelenik a navigációs sávban és az oldalsávban.
-* Egy nyitott Pull Request mutat a `feature/advanced-structure` branch-ből a `main` branch-be, ami nem lett merge-elve.
+- Egy alap Docusaurus projekt van a `main` branch-en.
+- Egy `feature/advanced-structure` (vagy hasonló nevű) branch létezik a GitHub repository-ban, ami tartalmazza:
+    - A `docs/tutorials` mappába áthelyezett eredeti dokumentációt, helyesen konfigurált oldalsávval és navigációval.
+    - Egy új `docs/guides` mappát több oldallal, almappákkal, ahol a frontmatter (`sidebar_position`, `_category_.json` stb.) használata látható.
+    - A `guides` szekció megjelenik a navigációs sávban és az oldalsávban.
+- Egy nyitott Pull Request mutat a `feature/advanced-structure` branch-ből a `main` branch-be, ami nem lett merge-elve.
