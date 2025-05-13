@@ -3,7 +3,7 @@ title: 2. feladat - API dokumentáció
 sidebar_position: 2
 ---
 
-# 2. Részfeladat: Dinamikus tartalom - API dokumentáció generálása OpenAPI specifikációból
+# 2. feladat: Dinamikus tartalom - API dokumentáció generálása OpenAPI specifikációból
 
 Ebben a feladatban egy OpenAPI specifikáció alapján generált API dokumentációval fogod bővíteni az oldaladat a kurzuson bemutatott [`@paloaltonetworks/docusaurus-openapi-docs`](https://github.com/PaloAltoNetworks/docusaurus-openapi-docs) plugin segítségével.
 
