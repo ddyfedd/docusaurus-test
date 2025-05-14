@@ -34,13 +34,51 @@ Ezt a részfeladatot egy **új branch-en** végezd el, amit a `main` branch-ből
 
 ## 2.1 OpenAPI docs plugin telepítése és konfigurálása
 
-### Plugin telepítése
+### Plugin és téma telepítése
 
-Telepítsd a közösségi plugint, a projekted gyökér mappájában, terminálban futtatva:
+Telepítsd a közösségi plugin-t és a hozzá tartozó dokumentációs témát, a projekted gyökér mappájában, terminálban futtatva:
+
+<Tabs>
+<TabItem value='npm' label='NPM'>
 
 ```bash
-npm install @paloaltonetworks/docusaurus-openapi-docs
+npm install docusaurus-plugin-openapi-docs
+npm install docusaurus-theme-openapi-docs
 ```
+
+</TabItem>
+<TabItem value='yarn' label='Yarn'>
+
+```bash
+yarn add docusaurus-plugin-openapi-docs
+yarn add docusaurus-theme-openapi-docs
+```
+
+</TabItem>
+</Tabs>
+
+### React telepítése
+
+Telepítsd a React 18, vagy korábbi verzióját:
+
+<Tabs>
+<TabItem value='npm' label='NPM'>
+
+```bash
+npm install react@18
+npm install react-dom@18
+```
+
+</TabItem>
+<TabItem value='yarn' label='Yarn'>
+
+```bash
+yarn add react@18
+yarn add react-dom@18
+```
+
+</TabItem>
+</Tabs>
 
 ### OpenAPI specifikáció előkészítése
 
@@ -49,28 +87,53 @@ npm install @paloaltonetworks/docusaurus-openapi-docs
 
 ### Plugin konfigurálása
 
-Módosítsd a `docusaurus.config.js` fájlt. A `plugins` tömbben add hozzá a következő konfigurációt:
+Módosítsd a `docusaurus.config.js` fájlt. A `presets.docs` és `plugins` tömbben add hozzá a következő konfigurációt:
 
 ```javascript title="docusaurus.config.js"
 // ...
 module.exports = { // Vagy export default, ha ES modult használsz
   // ...meglévő konfigurációk...
-  plugins: [
-    // ...esetleges egyéb pluginek...
+  presets: [
     [
-      '@paloaltonetworks/docusaurus-openapi-docs',
-      {
-        id: 'petstoreapi', // Egyedi azonosító az API doksinak
-        specPath: 'openapi/petstore.yaml', // Az OpenAPI fájl elérési útja
-        outputDir: 'docs/petstore-api', // A generált Markdown fájlok helye
-        sidebarOptions: {
-          groupPathsBy: 'tag', // Csoportosítás tagek alapján az oldalsávban
-          // További opciók a plugin dokumentációja szerint
-        },
-        // Opcionális: downloadButton: true,
+      'classic',
+      /** @type {import('@docusaurus/preset-classic').Options} */
+      ({
+        docs: {
+          sidebarPath: './sidebars.js',
+          //highlight-next-line
+          docItemComponent: "@theme/ApiItem", // Az API elemek komponensei, add hozzá ezt a sort
+          
+        blog: { /*...*/ },
+        theme: { /*...*/ }
       },
+      }),
     ],
+  ], 
+  
+  //highlight-start
+  plugins: [
+    [
+      'docusaurus-plugin-openapi-docs',
+      {
+        id: 'openapi', // A plugin egyedi azonosítója
+        docsPluginId: 'classic',
+        config: {
+          petstore: {  // Egyedi azonosító az API doksinak
+            specPath: 'api/petstore-api.yaml', // Az OpenAPI fájl elérési útja
+            outputDir: 'docs/petstore', // A generált Markdown fájlok helye
+            sidebarOptions: {
+              groupPathsBy: 'tag',  // Csoportosítás tagek alapján az oldalsávban
+          // További opciók a plugin dokumentációja szerint
+            },
+            // Opcionális: downloadButton: true,
+          },
+        }
+      }
+    ]
   ],
+  themes: ['docusaurus-theme-openapi-docs'],
+  //highlight-end
+  
   // ...további konfigurációk...
 };
 ```
@@ -84,26 +147,19 @@ module.exports = { // Vagy export default, ha ES modult használsz
 ### Markdown fájlok generálása
 
 1. **Parancs futtatása:** Futtasd a plugin parancsát a Markdown fájlok generálásához (a parancs pontos formáját ellenőrizd a plugin dokumentációjában, általában valami hasonló):
-
+    
     <Tabs>
     <TabItem value='npm' label='NPM'>
-
+    
     ```bash
     npm run docusaurus gen-api-docs all
     ```
 
     </TabItem>
     <TabItem value='yarn' label='Yarn'>
-
+    
     ```bash
     yarn docusaurus gen-api-docs all
-    ```
-
-    </TabItem>
-    <TabItem value='npx' label='NPX'>
-
-    ```bash
-    npx docusaurus gen-api-docs all
     ```
 
     </TabItem>
@@ -143,7 +199,7 @@ Ahhoz, hogy a létrehozott API dokumentációt a navigációban is elérhetővé
     ```javascript title="sidebars.js"
     module.exports = {
       // ...meglévő oldalsávjaid (pl. tutorialSidebar, guideSidebar)...
-      myApiSidebar: require('./docs/petstore-api/sidebar.js'), // Hivatkozás a plugin által generált oldalsáv fájlra
+      myApiSidebar: require('./docs/petstore-api/sidebar'), // Hivatkozás a plugin által generált oldalsáv fájlra
     };
     ```
 
@@ -165,7 +221,6 @@ Ahhoz, hogy a létrehozott API dokumentációt a navigációban is elérhetővé
         items: [
           // ...meglévő navbar itemek (pl. Tutorials, Guides)...
           {
-            to: '/docs/petstore-api'
             type: 'docSidebar', // Ha külön oldalsávot használsz az API-hoz
             sidebarId: 'myApiSidebar', // Az API oldalsávjának ID-ja a sidebars.js-ből
             label: 'Petstore API',
