@@ -83,7 +83,7 @@ yarn add react-dom@18
 ### OpenAPI specifikáció előkészítése
 
 1.  Hozz létre egy `openapi` mappát a projekt gyökerében.
-1.  Mentsd el ide a [Petstore API](https://petstore3.swagger.io/openapi.yaml) specifikációját `petstore.yaml` néven. Használhatsz más v3-as OpenAPI specifikációt is, pl. az API-s házival létrehozottat.
+1.  Mentsd el ide a [Petstore API](https://petstore3.swagger.io/openapi.yaml) specifikációját `petstore-api.yaml` néven. Használhatsz más v3-as OpenAPI specifikációt is, pl. az API-s házival létrehozottat.
 
 ### Plugin konfigurálása
 
@@ -119,7 +119,7 @@ module.exports = { // Vagy export default, ha ES modult használsz
         docsPluginId: 'classic',
         config: {
           petstore: {  // Egyedi azonosító az API doksinak
-            specPath: 'api/petstore-api.yaml', // Az OpenAPI fájl elérési útja
+            specPath: 'openapi/petstore-api.yaml', // Az OpenAPI fájl elérési útja
             outputDir: 'docs/petstore', // A generált Markdown fájlok helye
             sidebarOptions: {
               groupPathsBy: 'tag',  // Csoportosítás tagek alapján az oldalsávban
@@ -179,7 +179,7 @@ module.exports = { // Vagy export default, ha ES modult használsz
     ```
 
     :::tip Miért hasznos ez?
-    - **Tiszta változáskövetés:** Csak az OpenAPI specifikációs fájl (pl. `petstore.yaml`) változásait kell követned. A Markdown fájlok ebből automatikusan generálódnak.
+    - **Tiszta változáskövetés:** Csak az OpenAPI specifikációs fájl (pl. `petstore-api.yaml`) változásait kell követned. A Markdown fájlok ebből automatikusan generálódnak.
     - **Automatizálás:** A CI/CD folyamat (amit a [3. feladatban](./reszfeladat3) állítasz be) felelős lesz a Markdown fájlok friss generálásáért minden build során.
     - **Lokális fejlesztés:** Attól függetlenül, hogy a generált fájlok nincsenek a Gitben, lokálisan továbbra is legenerálhatod őket (`npm run docusaurus gen-api-docs all`), hogy lásd az előnézetet és szerkeszthesd az API dokumentációt (pl. plusz információk hozzáadásával a generált fájlokhoz). **Ha az OpenAPI specifikáció (YAML) változik, újra kell generálni a fájlokat a változások megjelenítéséhez.**
     :::
