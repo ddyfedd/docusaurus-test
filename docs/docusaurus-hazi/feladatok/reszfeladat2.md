@@ -38,7 +38,7 @@ Ezt a részfeladatot egy **új branch-en** végezd el, amit a `main` branch-ből
 
 Telepítsd a közösségi plugin-t és a hozzá tartozó dokumentációs témát, a projekted gyökér mappájában, terminálban futtatva:
 
-<Tabs>
+<Tabs groupId='package-manager'>
 <TabItem value='npm' label='NPM'>
 
 ```bash
@@ -61,7 +61,7 @@ yarn add docusaurus-theme-openapi-docs
 
 Telepítsd a React 18, vagy korábbi verzióját:
 
-<Tabs>
+<Tabs groupId='package-manager'>
 <TabItem value='npm' label='NPM'>
 
 ```bash
@@ -148,7 +148,7 @@ module.exports = { // Vagy export default, ha ES modult használsz
 
 1. **Parancs futtatása:** Futtasd a plugin parancsát a Markdown fájlok generálásához (a parancs pontos formáját ellenőrizd a plugin dokumentációjában, általában valami hasonló):
     
-    <Tabs>
+    <Tabs groupId='package-manager'>
     <TabItem value='npm' label='NPM'>
     
     ```bash
@@ -186,7 +186,7 @@ module.exports = { // Vagy export default, ha ES modult használsz
 
 1. **Fejlesztői szerver indítása és ellenőrzés:** 
 
-    Indítsd el a fejlesztői szervert (`npm start`), és ellenőrizd, hogy a generált API dokumentáció megjelenik-e a `docs/petstore-api/add-pet` útvonalon (vagy ahogy a [navigációban beállítod](#navigáció-beállítása)).
+    Indítsd el a fejlesztői szervert (`npm start`), és ellenőrizd, hogy a generált API dokumentáció megjelenik-e a `docs/petstore/add-pet` útvonalon (vagy ahogy a [navigációban beállítod](#navigáció-beállítása)).
 
 ### Navigáció beállítása
 
@@ -199,7 +199,7 @@ Ahhoz, hogy a létrehozott API dokumentációt a navigációban is elérhetővé
     ```javascript title="sidebars.js"
     module.exports = {
       // ...meglévő oldalsávjaid (pl. tutorialSidebar, guideSidebar)...
-      myApiSidebar: require('./docs/petstore-api/sidebar'), // Hivatkozás a plugin által generált oldalsáv fájlra
+      myApiSidebar: require('./docs/petstore/sidebar'), // Hivatkozás a plugin által generált oldalsáv fájlra
     };
     ```
 
