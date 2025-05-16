@@ -175,7 +175,7 @@ module.exports = { // Vagy export default, ha ES modult használsz
     # ... egyéb bejegyzések ...
 
     # Generated API docs
-    docs/petstore-api/
+    docs/petstore
     ```
 
     :::tip Miért hasznos ez?
