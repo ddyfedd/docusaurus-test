@@ -85,15 +85,15 @@ Automatizáljuk a publikálást.
           - uses: actions/setup-node@v4
             with:
               node-version: 18
-              cache: yarn
+              cache: npm
 
           - name: Install dependencies
-            run: yarn install --frozen-lockfile
+            run: npm install
           # Adjuk hozzá ezt a lépést, hogy az API specifikáció is felépüljön.
           - name: Build API Docs
-            run: yarn docusaurus gen-api-docs all
+            run: npm docusaurus gen-api-docs all
           - name: Build website
-            run: yarn build
+            run: npm build
 
           - name: Upload Build Artifact
             uses: actions/upload-pages-artifact@v3
@@ -180,18 +180,17 @@ Ez a lépés segít abban, hogy hibás kód ne kerülhessen be a `main` branch-b
         steps:
           - name: Checkout
             uses: actions/checkout@v4
-          - name: Set up Node
-            uses: actions/setup-node@v4
+          - uses: actions/setup-node@v4
             with:
-              node-version: '18' # Vagy a projekt által használt Node.js verzió
-              cache: 'yarn'
+              node-version: 18
+              cache: npm
 
           - name: Install dependencies
-            run: yarn install --frozen-lockfile
+            run: npm install
           - name: Build API docs
-            run: yarn docusaurus gen-api-docs all
+            run: npm docusaurus gen-api-docs all
           - name: Build
-            run: yarn build
+            run: npm build
     ```
 
     :::tip Légy kreatív!
