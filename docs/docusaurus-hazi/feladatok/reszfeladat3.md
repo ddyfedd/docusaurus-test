@@ -69,7 +69,7 @@ Automatizáljuk a publikálást.
     on:
       push:
         branches:
-          - main
+          - main # Vagy master, attól függően, hogy nevezted el a fő branched
       workflow_dispatch: # Manuális indítás engedélyezése
         # Review gh actions docs if you want to further define triggers, paths, etc
         # [https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#on](https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#on)
@@ -88,12 +88,12 @@ Automatizáljuk a publikálást.
               cache: npm
 
           - name: Install dependencies
-            run: npm install
+            run: npm run install
           # Adjuk hozzá ezt a lépést, hogy az API specifikáció is felépüljön.
           - name: Build API Docs
-            run: npm docusaurus gen-api-docs all
+            run: npm run docusaurus gen-api-docs all
           - name: Build website
-            run: npm build
+            run: npm run build
 
           - name: Upload Build Artifact
             uses: actions/upload-pages-artifact@v3
@@ -172,7 +172,7 @@ Ez a lépés segít abban, hogy hibás kód ne kerülhessen be a `main` branch-b
     on:
       pull_request:
         branches:
-          - main # Csak a main branch-be irányuló PR-ek esetén
+          - main # Csak a main (vagy master) branch-be irányuló PR-ek esetén
 
     jobs:
       test-build:
@@ -186,11 +186,11 @@ Ez a lépés segít abban, hogy hibás kód ne kerülhessen be a `main` branch-b
               cache: npm
 
           - name: Install dependencies
-            run: npm install
+            run: npm run install
           - name: Build API docs
-            run: npm docusaurus gen-api-docs all
+            run: npm run docusaurus gen-api-docs all
           - name: Build
-            run: npm build
+            run: npm run build
     ```
 
     :::tip Légy kreatív!
