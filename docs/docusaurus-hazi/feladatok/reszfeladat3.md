@@ -88,7 +88,7 @@ Automatizáljuk a publikálást.
               cache: npm
 
           - name: Install dependencies
-            run: npm run install
+            run: npm install
           # Adjuk hozzá ezt a lépést, hogy az API specifikáció is felépüljön.
           - name: Build API Docs
             run: npm run docusaurus gen-api-docs all
@@ -186,7 +186,7 @@ Ez a lépés segít abban, hogy hibás kód ne kerülhessen be a `main` branch-b
               cache: npm
 
           - name: Install dependencies
-            run: npm run install
+            run: npm install
           - name: Build API docs
             run: npm run docusaurus gen-api-docs all
           - name: Build
