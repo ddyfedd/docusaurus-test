@@ -123,9 +123,8 @@ module.exports = { // Vagy export default, ha ES modult használsz
             outputDir: 'docs/petstore', // A generált Markdown fájlok helye
             sidebarOptions: {
               groupPathsBy: 'tag',  // Csoportosítás tagek alapján az oldalsávban
-          // További opciók a plugin dokumentációja szerint
             },
-            // Opcionális: downloadButton: true,
+            // További opciók a plugin dokumentációja szerint
           },
         }
       }
