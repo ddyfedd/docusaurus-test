@@ -129,6 +129,7 @@ Automatizáljuk a publikálást.
     :::
 
 1.  **Repository beállítások GitHub Actions-höz:** A GitHub repository **Settings -> Actions -> General** részében a **Workflow permissions** alatt győződj meg róla, hogy a **Read and write permissions** van kiválasztva.
+1. **Repository beállítások GitHub Pages-hez:** A GitHub repository **Settings -> Pages** menü **Build and deploy** szekciójában állítsd be a következőt: **Source: GitHub Action**s.
 
 :::info[Segítség]
 [Docusaurus Deployment - Triggering deployment with GitHub Actions](https://docusaurus.io/docs/deployment#triggering-deployment-with-github-actions)

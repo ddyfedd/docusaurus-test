@@ -198,6 +198,7 @@ Ahhoz, hogy a létrehozott API dokumentációt a navigációban is elérhetővé
     ```javascript title="sidebars.js"
     module.exports = {
       // ...meglévő oldalsávjaid (pl. tutorialSidebar, guideSidebar)...
+      // highlight-next-line
       myApiSidebar: require('./docs/petstore/sidebar'), // Hivatkozás a plugin által generált oldalsáv fájlra
     };
     ```
@@ -219,12 +220,16 @@ Ahhoz, hogy a létrehozott API dokumentációt a navigációban is elérhetővé
         // ...logo...
         items: [
           // ...meglévő navbar itemek (pl. Tutorials, Guides)...
+          
+          // highlight-start
           {
             type: 'docSidebar', // Ha külön oldalsávot használsz az API-hoz
             sidebarId: 'myApiSidebar', // Az API oldalsávjának ID-ja a sidebars.js-ből
             label: 'Petstore API',
             position: 'left',
           },
+          //highlight-end
+
           // ...esetleges blog link, GitHub link...
         ],
       },
