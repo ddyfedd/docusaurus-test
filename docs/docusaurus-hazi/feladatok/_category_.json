@@ -1,8 +1,8 @@
 {
   "label": "Feladatok",
-  "position": 2,
+  "position": 3,
   "link": {
     "type": "generated-index",
-    "description": "Itt találod az egyes feladatok részletes leírásait."
+    "description": "Itt találod az egyes feladatok részletes leírásait. A kurzus záróprojektjeként egy saját, működő dokumentációs oldalt fogsz létrehozni, melyet API specifikációval bővítesz és GitHub Actions segítségével publikálsz. A feladatok egymásra épülnek, lefedve a modern dokumentációs munkafolyamat legfontosabb lépéseit."
   }
 }
