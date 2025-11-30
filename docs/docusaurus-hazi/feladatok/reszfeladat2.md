@@ -148,7 +148,7 @@ Ezek a stílusok a [Docusaurus OpenAPI plugin demó oldaláról](https://docusau
 :::
 
 ```css title="src/css/custom.css"
-// ...
+/* A fájl eredeti tartalma... */
 
 .api-method > .menu__link,
 .schema > .menu__link {
@@ -215,7 +215,8 @@ Ezek a stílusok a [Docusaurus OpenAPI plugin demó oldaláról](https://docusau
 ```
 
 :::info[Segítség]
-[PaloAltoNetworks/docusaurus-openapi-docs GitHub Repository](https://github.com/PaloAltoNetworks/docusaurus-openapi-docs)
+- [PaloAltoNetworks/docusaurus-openapi-docs GitHub Repository](https://github.com/PaloAltoNetworks/docusaurus-openapi-docs)
+- [PaloAltoNetworks/docusaurus-openapi-docs Documentation](https://docusaurus-openapi.tryingpan.dev/)
 :::
 
 ## 2.2 API dokumentáció generálása és elérhetővé tétele
