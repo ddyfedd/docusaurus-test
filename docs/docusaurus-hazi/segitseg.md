@@ -13,6 +13,10 @@ Ez a komplex házi feladat arra szolgál, hogy elmélyítsd a Docusaurus-szal ka
 
 A dokumentáció készítés nem egy elszigetelt tevékenység, mint minden munka itt sem tudunk függetlenül, elszigetelve másoktól dolgozni. Ha bármikor úgy érzed, hogy elakadtál, nem egyértelmű egy lépés, vagy technikai problémába ütköztél, kérlek, ne habozz segítséget kérni!
 
+:::tip[Technikai problémák?]
+Ha konkrét hibával találkoztál (pl. telepítési hiba, build hiba, GitHub Actions probléma), látogass el a [Hibaelhárítás](./hibaelharitas) oldalra, ahol a leggyakoribb problémák megoldásait találod!
+:::
+
 **Elsődleges segítségkérési csatorna:**
 
 - **Kurzus Discord Csatornája:** Írj bátran a kurzus dedikált Discord csatornájára! Itt vagy én (az oktató), a szervezők, vagy a hallgatótársaid is tudnak segíteni. Gyakran mások is tanulnak a felmerülő kérdésekből és az azokra adott válaszokból.
@@ -28,5 +32,7 @@ A dokumentáció készítés nem egy elszigetelt tevékenység, mint minden munk
 Ez a házi feladat egyben egy lehetőség a kísérletezésre is. Próbálj ki bátran új dolgokat, módosítsd a konfigurációkat, nézd meg, mi történik! A cél, hogy minél jobban megértsd a Docusaurus működését és a benne rejlő lehetőségeket.
 
 Ne feledd, a legfontosabb a tanulási folyamat és a megszerzett tapasztalat.
+
+___
 
 Sok sikert a feladathoz!

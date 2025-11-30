@@ -15,7 +15,7 @@ A feladatok elvégzéséhez szükséged lesz egy megfelelően beállított fejle
 
 A következő szoftverekre lesz szükséged:
 
-1.  **Visual Studio Code (VSCode):** Kód szerkesztő. Az órák során ezt használtam, azonban ti bármilyen másik szerkesztőt is használhattok, ha szeretnétek. Szerintem ez egy könnyen tanulható szerkesztő, amiben megtalálható minden feature, amivel a projekteteket létre tudjátok hozni.
+1.  **Visual Studio Code (VSCode):** Kód szerkesztő. Az órák során ezt használtam, azonban bármilyen szerkesztőt használhattok. Ez egy könnyen tanulható szerkesztő, amiben megtalálható minden feature, amivel a projekteteket létre tudjátok hozni.
 2.  **Parancssor (Terminal/CLI):** A parancsok futtatásához.
 3.  **Node.js és NPM:** JavaScript futtatókörnyezet és csomagkezelő.
 4.  **Yarn (Opcionális, de ajánlott):** Alternatív csomagkezelő.
@@ -28,15 +28,23 @@ A VSCode a legnépszerűbb ingyenes kódszerkesztő webfejlesztéshez.
 
 - [Letöltés és telepítés (Windows, Mac, Linux)](https://code.visualstudio.com/download)
 
-:::tip
-Érdemes telepíteni néhány kiegészítőt (Extension) is, pl. "ESLint", "Prettier", "Markdown All in One".
+:::tip Ajánlott kiegészítők (Extensions)
+Érdemes telepíteni néhány kiegészítőt, amelyek megkönnyítik a munkát:
+
+- **Markdown All in One** - Markdown szerkesztés támogatása (előnézet, billentyűparancsok)
+- **Prettier** - Kód formázás automatizálása (egységes kódstílus)
+- **ESLint** - JavaScript/TypeScript kód minőség ellenőrzés
+- **GitLens** (opcionális) - Git history és blame információk megjelenítése
+
+Ezek nem kötelezőek, de jelentősen javítják a fejlesztői élményt!
 :::
 
 ## 2. Node.js és NPM telepítése
 
 Ez a lépés kritikus a Docusaurus futtatásához. Javasoljuk az LTS (Long Term Support) verzió használatát.
 
-### Telepítés macOS-re
+<Tabs groupId="operating-system">
+<TabItem value="macos" label="macOS" default>
 
 Mac-en a legegyszerűbb módja a telepítésnek a **Homebrew** vagy az **nvm** (Node Version Manager) használata.
 
@@ -112,7 +120,8 @@ További információ: [nvm hivatalos dokumentáció](https://github.com/nvm-sh/
 </TabItem>
 </Tabs>
 
-### Telepítés Windows-ra
+</TabItem>
+<TabItem value="windows" label="Windows">
 
 Windows-on gyakori probléma, hogy a `node` vagy `npm` parancsok nem érhetőek el telepítés után, mert nem kerültek be a rendszer `$PATH` környezeti változójába.
 
@@ -122,7 +131,7 @@ Windows-on gyakori probléma, hogy a `node` vagy `npm` parancsok nem érhetőek 
 1.  Töltsd le az **LTS** verziót a [Node.js weboldaláról](https://nodejs.org/).
 1.  Futtasd a telepítőt.
 
-    :::caution FONTOS 
+    :::caution FONTOS
     A telepítés során a "Custom Setup" ablaknál vagy a beállításoknál győződj meg róla, hogy az **"Add to PATH"** opció ki van pipálva! Enélkül a parancssor nem fogja megtalálni a `node` parancsot.
     :::
 
@@ -174,7 +183,7 @@ További információ: [nvm-windows dokumentáció](https://github.com/coreybutl
 </TabItem>
 </Tabs>
 
-#### Hibaelhárítás Windows-on
+### Hibaelhárítás Windows-on
 
 Ha a `node -v` parancsra "not recognized" hibát kapsz:
 
@@ -228,6 +237,9 @@ Ezután a `node -v` és `npm -v` parancsoknak működniük kell.
 </TabItem>
 </Tabs>
 
+</TabItem>
+</Tabs>
+
 
 ### Ellenőrzés
 
@@ -254,6 +266,20 @@ Ha Windows-on a `node -v` parancsra "not recognized" hibát kapsz, lásd a [Wind
 
 A Docusaurus (és a Facebook-os eszközök) gyakran preferálják a Yarn-t.
 
+### Miért Yarn az NPM helyett?
+
+| Szempont | NPM | Yarn |
+|----------|-----|------|
+| **Sebesség** | Gyors | Általában gyorsabb (párhuzamos telepítés) |
+| **Determinizmus** | Jó | Kiváló (lock file garantálja ugyanazt a verziót) |
+| **Használat** | Alapértelmezett | Külön telepítés szükséges |
+
+:::note
+A feladatok során **mindkét** csomagkezelővel dolgozhatsz. Az utasításokban a fülek segítségével választhatsz közöttük. Válaszd azt, amelyiket kényelmesebbnek találod!
+:::
+
+### Telepítés
+
 ```bash
 npm install --global yarn
 ```
@@ -274,12 +300,69 @@ git config --global user.name "A Te Neved"
 git config --global user.email "email@cim.ed"
 ```
 
+:::info Miért kell ezt beállítani?
+A `git config` parancs beállítja a nevedet és az email címedet, ami **minden commit-ba** belekerül. Ez azért fontos, mert:
+
+- **Azonosítás:** Mások látják, hogy ki készítette a változtatásokat
+- **GitHub integráció:** A GitHub ez alapján köti össze a commit-jaidat a fiókoddal
+- **Együttműködés:** Csapatmunkánál elengedhetetlen, hogy tudjuk ki mit csinált
+
+Használd azt az email címet, amit a GitHub fiókodnál is használsz!
+:::
+
 Jelentkezz be a GitHub CLI-vel:
 
 ```bash
 gh auth login
 ```
 
+Ez egy interaktív folyamat, amely végigvezet a bejelentkezésen. Válaszd a böngészős bejelentkezést (browser auth), ez a legegyszerűbb.
+
 ## 5. GitHub regisztráció és Repo
 
 Ha még nincs, regisztrálj a [GitHub.com](https://github.com/)-on. A feladatok során létre kell majd hoznod egy repository-t a projektednek.
+
+___
+
+## ✅ Végső ellenőrző lista - Készen állsz!
+
+Mielőtt elkezdenéd az 1. feladatot, ellenőrizd, hogy minden megvan. Pipáld be azt, amit már elvégeztél!
+
+### Eszközök telepítése
+
+| Eszköz | Ellenőrzési parancs | Kész |
+|--------|---------------------|------|
+| **Node.js** | `node -v` (eredmény: pl. `v18.18.0`) | <input type="checkbox" /> |
+| **NPM** | `npm -v` (eredmény: pl. `9.8.5`) | <input type="checkbox" /> |
+| **Git** | `git --version` (eredmény: pl. `git version 2.39.0`) | <input type="checkbox" /> |
+| **GitHub CLI** | `gh --version` (eredmény: pl. `gh version 2.40.0`) | <input type="checkbox" /> |
+| **VSCode vagy más szerkesztő** | Megnyitható és használható | <input type="checkbox" /> |
+| **Yarn (opcionális)** | `yarn --version` (ha használni akarod) | <input type="checkbox" /> |
+
+### Konfigurációk
+
+| Beállítás | Ellenőrzés | Kész |
+|-----------|------------|------|
+| **Git user.name** | `git config user.name` visszaad egy nevet | <input type="checkbox" /> |
+| **Git user.email** | `git config user.email` visszaad egy email címet | <input type="checkbox" /> |
+| **GitHub bejelentkezés** | `gh auth status` "Logged in" üzenetet mutat | <input type="checkbox" /> |
+
+### Hozzáférések
+
+| Fiók/Hozzáférés | Ellenőrzés | Kész |
+|-----------------|------------|------|
+| **GitHub fiók** | Be tudsz jelentkezni a [github.com](https://github.com)-ra | <input type="checkbox" /> |
+| **Repository létrehozási jog** | Tudsz új repository-t létrehozni (**Settings > Repositories**) | <input type="checkbox" /> |
+
+:::tip[Ha minden pipálva van...]
+**Gratulálok! 🎉 Készen állsz az 1. feladatra!**
+
+Kezdheted a [1. feladat - Projekt alapok](./feladatok/reszfeladat1) oldalt.
+:::
+
+:::caution[Ha valami nem működik...]
+Ne aggódj! Nézd meg a [Segítség és támogatás](./segitseg) oldalt, ahol találsz:
+- Gyakori problémák megoldásait
+- Discord csatorna elérhetőségét
+- További segítséget
+:::

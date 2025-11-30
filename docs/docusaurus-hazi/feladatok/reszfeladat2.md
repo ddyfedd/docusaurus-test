@@ -10,6 +10,31 @@ import TabItem from '@theme/TabItem';
 
 Ebben a feladatban egy OpenAPI specifikáció alapján generált API dokumentációval fogod bővíteni az oldaladat a kurzuson bemutatott [`@paloaltonetworks/docusaurus-openapi-docs`](https://github.com/PaloAltoNetworks/docusaurus-openapi-docs) plugin segítségével.
 
+## ⏱️ Becsült időigény
+
+| Szakasz | Időigény | Megjegyzés |
+|---------|----------|------------|
+| **Plugin telepítése és konfiguráció** | 15-20 perc | Első plugin telepítésnél +5-10 perc |
+| **OpenAPI spec előkészítése** | 5-10 perc | Ha saját API-t használsz, több idő |
+| **API dokumentáció generálása** | 10-15 perc | Navigáció beállítása, tesztelés |
+| **CSS stílusok hozzáadása** | 5-10 perc | Opcionális testreszabás |
+| **Összesen** | **45-60 perc** | Hibakeresés nélkül |
+
+## 📋 Előfeltételek
+
+Mielőtt nekikezdenél ennek a feladatnak, győződj meg róla, hogy:
+
+| Előfeltétel | Ellenőrzés | Hol találod |
+|-------------|------------|-------------|
+| **1. feladat elvégezve** | Működő Docusaurus projekt a `main` branch-en | [1. feladat](./reszfeladat1) |
+| **Node.js és NPM működik** | `node -v` és `npm -v` parancsok válaszolnak | [Előkészületek](../elokeszuletek#2-nodejs-és-npm-telepítése) |
+| **Git és GitHub beállítva** | Commitokat tudsz készíteni és push-olni | [Előkészületek](../elokeszuletek#4-git-és-github-cli) |
+| **Docusaurus szerver fut** | `npm start` paranccsal elindul az oldal | [1. feladat](./reszfeladat1#docusaurus-telepítése-és-projekt-inicializálása) |
+
+:::tip
+Ha az [1. feladat](./reszfeladat1) még nincs kész, előbb azt fejezd be!
+:::
+
 :::warning[Fontos]
 Ezt a részfeladatot egy **új branch-en** végezd el, amit a `main` branch-ből hozol létre (pl. `feature/api-documentation`).
 :::
@@ -31,6 +56,83 @@ Ezt a részfeladatot egy **új branch-en** végezd el, amit a `main` branch-ből
     ```bash
     git checkout -b feature/api-documentation
     ```
+
+## 🔍 Alapfogalmak: OpenAPI és Docusaurus pluginok
+
+Az órákon már megismerkedtél az OpenAPI specifikációval és a Docusaurus plugin rendszerrel. Mielőtt nekikezdenél a technikai lépéseknek, frissítsd fel ezeket a fogalmakat, hogy magabiztosan tudj haladni!
+
+### Mi az az OpenAPI?
+
+Az [**OpenAPI Specification**](https://learn.openapis.org/) (korábban Swagger Specification néven ismert) egy szabványos formátum REST API-k leírására. Ez egy JSON vagy YAML formátumú fájl, amely részletesen dokumentálja az API-t:
+
+- **Végpontok (endpoints):** Milyen URL-eken érhetők el az API funkciók (pl. `/pets`, `/users/{id}`)
+- **HTTP metódusok:** Milyen műveleteket támogat (GET, POST, PUT, DELETE, stb.)
+- **Paraméterek:** Milyen inputokat vár az API (path, query, header, body paraméterek)
+- **Válaszok:** Milyen struktúrában és státuszkódokkal (200, 404, 500, stb.) válaszol
+- **Adatmodellek (schemas):** Milyen objektumstruktúrákat használ (pl. egy `Pet` objektumnak milyen mezői vannak)
+
+**Miért hasznos?**
+- **Automatizálás:** Egy OpenAPI specifikációból automatikusan generálható dokumentáció, kliens SDK-k, szerveroldali stub kód, és még sok más
+- **Egyértelmű kommunikáció:** A fejlesztők, tesztelők és dokumentációírók ugyanazt a "forrást" használják
+- **Interaktív dokumentáció:** Az eszközök (mint a Swagger UI) lehetővé teszik az API kipróbálását közvetlenül a dokumentációból
+
+**Példa egy egyszerű OpenAPI leírásra:**
+
+```yaml title="pelda-api.yaml"
+openapi: 3.0.0
+info:
+  title: Pet Store API
+  version: 1.0.0
+paths:
+  /pets:
+    get:
+      summary: Lista az összes kisállatról
+      responses:
+        '200':
+          description: Sikeres válasz
+```
+
+:::info További olvasnivaló
+- [OpenAPI hivatalos dokumentáció](https://swagger.io/specification/)
+- [Mi az az OpenAPI? - Swagger útmutató](https://swagger.io/docs/specification/about/)
+:::
+
+### Mi az a Plugin a Docusaurus-ban?
+
+A **Docusaurus plugin** egy kiterjesztés, amely új funkcionalitást ad hozzá a Docusaurus oldaladhoz. A pluginok lehetővé teszik, hogy:
+
+- **Új tartalom típusokat adj hozzá:** Pl. API dokumentáció, changelog, képgaléria
+- **Testreszabd a build folyamatot:** Fájlok generálása, adatok betöltése külső forrásokból
+- **Integráld harmadik féltől származó eszközöket:** Pl. analytics, keresés, kommentrendszerek
+
+**A Docusaurus plugin ökoszisztéma:**
+- **Hivatalos pluginok:** A Docusaurus csapat által fejlesztett és karbantartott pluginok (pl. `@docusaurus/plugin-content-docs`, `@docusaurus/plugin-content-blog`)
+- **Közösségi pluginok:** Harmadik féltől származó pluginok (mint a `@paloaltonetworks/docusaurus-openapi-docs`, amit ebben a feladatban használunk)
+
+**Hogyan működik?**
+1. Telepíted a plugin npm csomagot (`npm install plugin-name`)
+2. Hozzáadod a `docusaurus.config.js` fájlban a `plugins` tömbhöz
+3. Konfigurálod a plugin opcióit (pl. fájl elérési utak, viselkedés beállítások)
+4. A plugin automatikusan integrálódik a build folyamatba
+
+**Példa plugin konfiguráció:**
+
+```javascript title='docsuaurus.config.js'
+plugins: [
+  [
+    'plugin-name',
+    {
+      option1: 'value',
+      option2: true
+    }
+  ]
+]
+```
+
+:::info További olvasnivaló
+- [Docusaurus Plugin áttekintés](https://docusaurus.io/docs/using-plugins)
+- [Docusaurus Plugin API](https://docusaurus.io/docs/api/plugin-methods)
+:::
 
 ## 2.1 OpenAPI docs plugin telepítése és konfigurálása
 
@@ -60,6 +162,15 @@ yarn add docusaurus-theme-openapi-docs
 ### React telepítése
 
 Telepítsd a React 18, vagy korábbi verzióját:
+
+:::info[Miért React 18?]
+A `@paloaltonetworks/docusaurus-openapi-docs` plugin React 18-at igényel a megfelelő működéshez. Bár a Docusaurus alapértelmezetten React 18-at használ, előfordulhat, hogy a projekt inicializálásakor egy újabb verziót telepített. A plugin még nem kompatibilis a React 19-cel vagy újabb verziókkal, ezért explicit módon le kell fixálnunk a React verzióját 18-ra.
+
+**Ha nem telepíted React 18-at:**
+- Build hibákat kaphatsz a plugin használatakor
+- Az API dokumentáció komponensei nem jelennek meg helyesen
+- Peer dependency warning üzeneteket fogsz kapni
+:::
 
 <Tabs groupId='package-manager'>
 <TabItem value='npm' label='NPM'>
@@ -349,3 +460,15 @@ ___
 | **Navigáció (API)** | Az API dokumentáció elérhető a Docusaurus oldal navigációs sávján és/vagy oldalsávján keresztül. | <input type="checkbox" /> |
 | **Stílusok (CSS)** | A `src/css/custom.css` fájl tartalmazza az API metódusok (GET, POST, stb.) stílusdefinícióit. | <input type="checkbox" /> |
 | **Pull Request (API)** | Egy merge-elt (de a branch nem törölt) PR mutat a `feature/api-documentation` branch-ből a `main` branch-be. | <input type="checkbox" /> |
+
+___
+
+## 🎯 Következő lépés
+
+:::success
+Nagyszerű munka! Az oldalad most már dinamikus, OpenAPI specifikációból generált API dokumentációval rendelkezik.
+:::
+
+A következő lépésben automatizálni fogjuk a build és deployment folyamatot, hogy minden változtatás automatikusan publikálódjon GitHub Pages-re.
+
+**Folytatás:** [3. feladat - CI/CD folyamat beállítása](./reszfeladat3)

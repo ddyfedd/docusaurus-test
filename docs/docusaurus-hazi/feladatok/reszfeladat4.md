@@ -12,6 +12,31 @@ Az utolsó feladatban egy egyszerűsített review folyamatot fogsz szimulálni, 
 
 Ez magában foglalja a változtatások külön branch-en történő fejlesztését, Pull Request (PR) létrehozását, és (opcionálisan) a PR ellenőrzését és branch protection szabályok alkalmazását.
 
+## ⏱️ Becsült időigény
+
+| Szakasz | Időigény | Megjegyzés |
+|---------|----------|------------|
+| **Branch létrehozása és változtatások** | 10-15 perc | Tartalom szerkesztés, új blogbejegyzés |
+| **Pull Request létrehozása** | 5-10 perc | PR leírás, review kérés |
+| **Branch Protection beállítása** | 10-15 perc | Első alkalommal +5 perc |
+| **Review szimuláció és merge** | 5-10 perc | Változtatások, status check |
+| **Összesen** | **30-45 perc** | Review-tól függően |
+
+## 📋 Előfeltételek
+
+Mielőtt nekikezdenél ennek a feladatnak, győződj meg róla, hogy:
+
+| Előfeltétel | Ellenőrzés | Hol találod |
+|-------------|------------|-------------|
+| **1-3. feladatok elvégezve** | Működő projekt CI/CD-vel a `main` branch-en | [1](./reszfeladat1), [2](./reszfeladat2), [3](./reszfeladat3). feladat |
+| **GitHub Pages él** | Az oldalad elérhető a `<username>.github.io/<repo>` címen | [3. feladat](./reszfeladat3) |
+| **CI/CD workflow működik** | A `deploy.yml` sikeresen lefut main push-ra | [3. feladat](./reszfeladat3) |
+| **Git alapok ismerete** | Branch, commit, push, PR műveleteket ismered | [1. feladat](./reszfeladat1#🔑-git-alapfogalmak-rövid-áttekintése) |
+
+:::tip
+Ha a CI/CD még nem működik stabilan, előbb azt javítsd ki!
+:::
+
 ## Mielőtt elkezdenéd
 
 
@@ -130,20 +155,44 @@ Most kérj véleményezést a változtatásaidról.
 1.  **PR nyitása:** A GitHub felületén hozz létre egy Pull Requestet a `feature/update-content-and-review` branch-ből a `main` branch-be.
 1.  **PR leírása:** Adj egy rövid, de informatív címet és leírást a PR-nek, összefoglalva a végrehajtott változtatásokat. Hivatkozhatsz a házi feladat ezen részére.
 
-    :::tip Haladó: PR Sablonok és Automatizáció
-    A konzisztens és informatív PR leírások érdekében érdemes bevezetni egy [Pull Request sablont](https://docs.github.com/en/communities/using-templates-to-encourage-useful-issues-and-pull-requests/creating-a-pull-request-template-for-your-repository) (pl. `.github/pull_request_template.md`). 
-    
-    Ez a sablon automatikusan megjelenik minden új PR létrehozásakor, és segíti a fejlesztőket a szükséges információk megadásában (pl. változások célja, tesztelési lépések, kapcsolódó ticket-ek).
+:::tip Haladó: PR Sablonok és Automatizáció
+A konzisztens és informatív PR leírások érdekében érdemes bevezetni egy [Pull Request sablont](https://docs.github.com/en/communities/using-templates-to-encourage-useful-issues-and-pull-requests/creating-a-pull-request-template-for-your-repository) (pl. `.github/pull_request_template.md`). 
 
-    **Automatizációs ötlet**
-    
-     Egy GitHub Actions workflow segítségével még tovább léphetsz! Készíthetsz egy olyan folyamatot, ami a PR létrehozásakor (vagy frissítésekor) automatikusan kigyűjti a megváltozott fájlok listáját (`git diff --name-only`), és hozzáfűzi azt a PR leírásához vagy egy kommenthez. Ez jelentősen megkönnyíti a reviewerek dolgát, mivel azonnal látják az érintett fájlokat anélkül, hogy a "Files changed" fülre kellene kattintaniuk.
-    :::
+Ez a sablon automatikusan megjelenik minden új PR létrehozásakor, és segíti a fejlesztőket a szükséges információk megadásában (pl. változások célja, tesztelési lépések, kapcsolódó ticket-ek).
+
+**Automatizációs ötlet**
+
+    Egy GitHub Actions workflow segítségével még tovább léphetsz! Készíthetsz egy olyan folyamatot, ami a PR létrehozásakor (vagy frissítésekor) automatikusan kigyűjti a megváltozott fájlok listáját (`git diff --name-only`), és hozzáfűzi azt a PR leírásához vagy egy kommenthez. Ez jelentősen megkönnyíti a reviewerek dolgát, mivel azonnal látják az érintett fájlokat anélkül, hogy a "Files changed" fülre kellene kattintaniuk.
+:::
 
 
 ## 4.5 Review folyamat szimulálása és branch protection (opcionális, de ajánlott)
 
 Ez a rész segít megérteni, hogyan működnek a minőségbiztosítási kapuk a valós projektekben.
+
+:::info[Review szimuláció egyedül dolgozva]
+Ha egyedül dolgozol a projekten és nincs társad, aki review-olhatná a PR-edet, van néhány lehetőséged:
+
+**Opció 1: Kurzustárs vagy oktató kérése (ajánlott)**
+- Kérd meg egy kurzustársadat vagy az oktatót, hogy nézze át a PR-edet
+- Ez valódi tapasztalatot ad a code review folyamatról
+- A Discord csatornán kérhetsz segítséget
+
+**Opció 2: Második GitHub fiók (oktatási célokra)**
+- Hozz létre egy második GitHub fiókot (pl. `<neved>-reviewer`)
+- Add hozzá collaborator-ként a repository-hoz (**Settings > Collaborators**)
+- Jelentkezz be a második fiókkal és review-old a PR-t
+
+**Opció 3: Branch Protection nélkül (egyszerűsített)**
+- Ne állíts be "Require approvals" szabályt
+- Csak a "Require status checks" opciót használd
+- Ez is értékes gyakorlat, még review nélkül is
+
+**Opció 4: Self-review (tanulási célokra)**
+- Nézd át saját kódodat kritikusan, mintha más írta volna
+- Írj kommenteket a PR-ben arról, mit csinálnál másképp
+- Dokumentáld a review gondolatmenetét
+:::
 
 1.  **Branch Protection Rule beállítása (ha még nem tetted meg):**
 
@@ -151,7 +200,7 @@ Ez a rész segít megérteni, hogyan működnek a minőségbiztosítási kapuk a
     - **Kötelező beállítások a szimulációhoz:**
 
         - **Require a pull request before merging:** Ezt pipáld be.
-            - **Require approvals:** Pipáld be, és állítsd be, hogy legalább `1` jóváhagyás szükséges legyen. (Megkérhetsz egy kurzustársat, vagy az oktatót a review-ra. Ha magadnak csinálod, akkor egy másik GitHub fiókkal, vagy ideiglenesen kikapcsolhatod ezt a PR merge-eléséhez, miután "elvileg" megtörtént a review.)
+            - **Require approvals:** Pipáld be, és állítsd be, hogy legalább `1` jóváhagyás szükséges legyen. (Lásd a fenti box-ot a review szimulációs lehetőségekről.)
         - **Require status checks to pass before merging:** Pipáld be.
             - Ha létrehoztad a `test.yml` workflow-t (3. részfeladat), akkor annak itt meg kell jelennie mint kötelezően sikeres "status check". Válaszd ki! Ha nem hoztad létre, akkor ezt a részt most kihagyhatod, vagy létrehozhatod a `test.yml`-t és hozzáadhatod ehhez a PR-hez.
 
@@ -201,7 +250,54 @@ ___
 | --------- | -------------- | :-------: |
 | **`feature/update-content-and-review` branch** | Létezik egy `feature/update-content-and-review` (vagy hasonló nevű) branch a GitHub repository-ban, ami tartalmazza a legutóbbi módosításokat. | <input type="checkbox" /> |
 | **Pull Request (Tartalomfrissítés)** | Létrehoztál egy Pull Requestet a `feature/update-content-and-review` branch-ből a `main` branch-be. | <input type="checkbox" /> |
-| **Merge** | A PR (szimulált review után) sikeresen merge-elve lett a `main` branch-be. A feature branch ne legyen törölve. | <input type="checkbox" /> |
+| **Merge** | A PR (szimulált review után) sikeresen merge-elve lett a `main` branch-be. **A feature branch ne legyen törölve.** | <input type="checkbox" /> |
 | **(Opcionális) Branch Protection** | Demonstráltad a branch protection rule-ok használatát (pl. kötelező review, kötelező status check a merge előtt). | <input type="checkbox" /> |
 | **CI/CD és publikálás** | A `main` branch-be történt merge után a CI/CD folyamat sikeresen deploy-olta a frissített oldalt GitHub Pages-re. | <input type="checkbox" /> |
-| **Változások láthatósága** | A 4.2 pontban végrehajtott változtatások láthatóak az élő, publikált GitHub Pages oldalon. | <input type="checkbox" /> |
+| **Változások láthatósága** | A [4.2 pontban](#42-változtatások-végrehajtása) végrehajtott változtatások láthatóak az élő, publikált GitHub Pages oldalon. | <input type="checkbox" /> |
+
+___
+
+## 🎉 Gratulálunk! Befejezted a házi feladatot!
+
+:::success
+Elkészítetted a teljes Docusaurus projekt lifecycle-ját: a projektkezdéstől a branch protection-ig, az API dokumentáción át a CI/CD automatizálásig.
+:::
+
+### Mit tanultál ebben a feladatban?
+
+- ✅ **Docusaurus projekt** létrehozása és konfigurálása
+- ✅ **Markdown dokumentáció** strukturálása frontmatter-rel
+- ✅ **Git workflow** alkalmazása (branch, commit, PR, merge)
+- ✅ **OpenAPI dokumentáció** automatikus generálása
+- ✅ **CI/CD pipeline** beállítása GitHub Actions-zel
+- ✅ **GitHub Pages** deployment automatizálása
+- ✅ **Code review folyamat** szimulálása branch protection-nel
+
+### Következő lépések
+
+Most, hogy megvan az alapod, továbblépve kipróbálhatod:
+
+- **Több dokumentációs szekció** hozzáadása (pl. FAQ, changelog, contributing guide)
+- **Több API dokumentáció** integrálása különböző szolgáltatásokhoz
+- **Testreszabás:** Egyedi témák, komponensek, Docusaurus pluginok
+- **Többnyelvű dokumentáció** (i18n) beállítása
+- **Keresés** integrálása (Algolia DocSearch)
+- **Versioning** használata (több dokumentációs verzió párhuzamosan)
+
+:::tip[Továbbfejlesztési ötletek]
+- Adj hozzá Google Analytics-et az oldaladhoz
+- Integráld a Docusaurus blog funkcióját intenzívebben
+- Hozz létre egyedi React komponenseket a dokumentációba
+- Állíts be automatikus link ellenőrzést (broken link checker)
+:::
+
+### Hasznos linkek
+
+- [Docusaurus hivatalos dokumentáció](https://docusaurus.io/docs)
+- [Docusaurus showcase](https://docusaurus.io/showcase) - Példák más projektektől
+- [Docusaurus Discord közösség](https://discord.gg/docusaurus)
+- [GitHub Actions marketplace](https://github.com/marketplace?type=actions)
+
+___
+
+**Köszönjük, hogy elvégezted ezt a feladatot! Sok sikert a további projektjeidhez!** 🚀

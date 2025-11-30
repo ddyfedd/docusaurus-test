@@ -5,7 +5,31 @@ sidebar_position: 1
 
 # 1. feladat: Docusaurus projekt alapok, struktúraátalakítás és új tartalmi szekció
 
-Ebben a feladatban létrehozod a saját Docusaurus projektedet, megismerkedsz az alapvető struktúrával, feltöltöd egy GitHub repository-ba, majd egy új branch-en komolyabb strukturális átalakításokat és bővítéseket hajtasz végre.
+Ebben a feladatban létrehozod a saját Docusaurus projektedet, megismerkedsz a projekt alapvető struktúrájával, feltöltöd egy GitHub repository-ba, majd egy új branch-en komolyabb strukturális átalakításokat és bővítéseket hajtasz végre.
+
+## ⏱️ Becsült időigény
+
+| Szakasz | Időigény | Megjegyzés |
+|---------|----------|------------|
+| **Docusaurus telepítés és inicializálás** | 15-20 perc | Első alkalommal +10-15 perc |
+| **GitHub repo létrehozása és feltöltés** | 10-15 perc | Git ismeretek függvényében |
+| **Struktúraátalakítás és új szekció** | 30-45 perc | Több oldal létrehozása, konfiguráció |
+| **Összesen** | **60-90 perc** | + 30-45 perc, ha még nincs környezet telepítve |
+
+## 📋 Előfeltételek
+
+Mielőtt nekikezdenél ennek a feladatnak, győződj meg róla, hogy:
+
+| Előfeltétel | Ellenőrzés | Hol találod |
+|-------------|------------|-------------|
+| **Node.js és NPM telepítve** | `node -v` és `npm -v` parancsok működnek | [Előkészületek](../elokeszuletek#2-nodejs-és-npm-telepítése) |
+| **Git telepítve és konfigurálva** | `git --version` és `git config user.name` működik | [Előkészületek](../elokeszuletek#4-git-és-github-cli) |
+| **GitHub fiók létrehozva** | Be tudsz jelentkezni a github.com-ra | [Előkészületek](../elokeszuletek#5-github-regisztráció-és-repo) |
+| **Kódszerkesztő telepítve** | VSCode vagy más szerkesztő elérhető | [Előkészületek](../elokeszuletek#1-visual-studio-code-telepítése) |
+
+:::tip
+Ha valamelyik előfeltétel hiányzik, látogass el az [Előkészületek](../elokeszuletek) oldalra!
+:::
 
 ## 1.1 Alapvető Docusaurus projekt és GitHub feltöltés (`main` branch)
 
@@ -46,13 +70,32 @@ Először is, hozzuk létre a Docusaurus projektünk alapjait.
     Az oldalnak elérhetőnek kell lennie a böngészőben, általában `http://localhost:3000` címen. Navigálj kicsit az oldalon, ismerkedj meg az alapvető felhasználói élménnyel. Érdemes lehet a már meglévő tartalmakat átolvasni, hogy átlásd a szerkesztés alapjait.
 
 1.  **Ismerkedés a struktúrával:** Nézd át a generált mappákat (`docs/`, `blog/`, `src/pages/`) és konfigurációs fájlokat (`docusaurus.config.js`, `sidebars.js`).
-1.  
-    - Módosítsd a `docusaurus.config.js` fájlban az oldal címét (`title`) és a `tagline`-t a saját projektednek megfelelően.
+1.  Módosítsd a `docusaurus.config.js` fájlban az oldal címét (`title`) és a `tagline`-t a saját projektednek megfelelően.
 
-1. **Egyszerű szerkesztés:** Próbálj meg egy egyszerű Markdown fájlt létrehozni a `docs` mappában, és nézd meg, hogyan jelenik meg az oldalon. Figyelj a szükséges 'frontmatter' meglétére (`title`, `sidebar_position`). 
+1. **Egyszerű szerkesztés:** Próbálj meg egy egyszerű Markdown fájlt létrehozni a `docs` mappában, és nézd meg, hogyan jelenik meg az oldalon.
+
+    **Mi az a frontmatter?**
+
+    A frontmatter egy YAML formátumú metaadat blokk, amely minden Markdown dokumentum elején található. Három kötőjel (`---`) közé kerül, és különböző beállításokat tartalmaz az oldalhoz.
+
+    Példa egy minimális frontmatter-re:
+    ```markdown
+    ---
+    title: Az oldal címe
+    sidebar_position: 1
+    ---
+
+    # Az oldal tartalma itt kezdődik
+    ```
+
+    **Legfontosabb frontmatter mezők:**
+    - `title`: Az oldal címe, ami az oldalsávban és a böngésző címsorában jelenik meg
+    - `sidebar_position`: Az oldal pozíciója az oldalsávban (pl. 1, 2, 3...)
+    - `description`: Rövid leírás az oldalról (SEO-hoz hasznos)
+    - `sidebar_label`: Ha más címet szeretnél az oldalsávban, mint a `title`
 
     :::tip
-    **Itt a kísérletezés ideje!** Próbálj ki különböző Markdown formázásokat, hogy ráérezz, milyen lehetőségeket rejt!
+    **Itt a kísérletezés ideje!** Próbálj ki különböző Markdown formázásokat és frontmatter beállításokat, hogy ráérezz, milyen lehetőségeket rejt!
     :::
 
 :::info[Segítség]
@@ -61,6 +104,26 @@ Először is, hozzuk létre a Docusaurus projektünk alapjait.
 - [Docusaur Docs - Configuration](https://docusaurus.io/docs/configuration)
 - [Docusaur Docs - Sidebar](https://docusaurus.io/docs/sidebar)
 - [Docusaur Docs - Doc front matter](https://docusaurus.io/docs/create-doc#doc-front-matter)
+:::
+
+### Git alapfogalmak rövid áttekintése
+
+Mielőtt nekikezdenél a verziókezelésnek, itt egy gyors összefoglaló a legfontosabb Git fogalmakról:
+
+| Fogalom | Mit jelent? | Mikor használod? |
+|---------|-------------|------------------|
+| **Repository (repo)** | A projekt verziókezelt mappája, amely tartalmazza az összes fájlt és a változások történetét | Projekt kezdésekor létrehozod (`git init`) |
+| **Commit** | Egy "pillanatkép" a projektedről egy adott időpontban. Tartalmazza a változásokat és egy leíró üzenetet | Amikor elmentesz egy logikai egységnyi változást (`git commit`) |
+| **Branch** | A fejlesztés egy független ága. Lehetővé teszi, hogy párhuzamosan dolgozz különböző funkciókon | Új funkció vagy javítás kezdésekor (`git checkout -b`) |
+| **Checkout** | Branch váltás vagy fájlok visszaállítása egy korábbi verzióra | Branch-ek közötti váltáskor (`git checkout <branch-név>`) vagy új branch létrehozásakor (`git checkout -b <branch-név>`) |
+| **Main/Master** | Az alapértelmezett, "főág" branch, általában az éles kód | Ez a stabil, publikálásra kész verzió |
+| **Push** | Feltölti a lokális commit-jaidat a távoli repository-ba (pl. GitHub-ra) | Amikor meg akarod osztani a változásaidat (`git push`) |
+| **Pull** | Letölti a távoli repository változásait a lokális gépedre | Mások változásainak beszerzésekor (`git pull`) |
+| **Remote** | Egy távoli repository (pl. GitHub-on), ahova feltöltöd a kódodat | Kapcsolat létrehozásakor (`git remote add origin`) |
+| **Pull Request (PR)** | Kérelem a változások beolvasztására egy branch-ből a másikba | Code review és együttműködés esetén |
+
+:::tip[Bővebben a Git-ről]
+Ha még nem vagy teljesen otthon a Git használatában, nézd meg ezt a remek bevezető útmutatót: [Git Handbook](https://guides.github.com/introduction/git-handbook/)
 :::
 
 ### GitHub repository létrehozása és projekt feltöltése
@@ -300,7 +363,7 @@ ___
 
 ## Elvárás az 1. feladat végére
 
-| Kritérium | Elvárt állapot | Elkészült |
+| Kritérium | Elvárt állapot | Kész |
 | --------- |--------------- | :-------: |
 | **Alap Docusaurus projekt** | Egy működő, alap Docusaurus projekt létezik a `main` branch-en a GitHub repository-ban. | <input type="checkbox" /> |
 | **`feature/advanced-structure` branch** | Létezik egy `feature/advanced-structure` (vagy hasonló nevű) branch a GitHub repository-ban. | <input type="checkbox" /> |
@@ -309,3 +372,15 @@ ___
 | **Frontmatter használata** | A `docs/guides` szekcióban a `sidebar_position`, `title`, és `_category_.json` használata demonstrálva van. | <input type="checkbox" /> |
 | **Navigáció (`guides` szekció)** | Az új `guides` szekció megjelenik a navigációs sávban és/vagy az oldalsáv(ak)ban, és az oldalak elérhetőek. | <input type="checkbox" /> |
 | **Pull Request (struktúra)** | Egy merge-elt (de a branch nem törölt) PR mutat a `feature/advanced-structure` branch-ből a `main` branch-be. | <input type="checkbox" /> |
+
+___
+
+## 🎯 Következő lépés
+
+:::success
+Gratulálunk! Sikeresen létrehoztad a Docusaurus projektedet, strukturáltad a dokumentációt, és feltöltötted GitHub-ra.
+:::
+
+Most, hogy az alapok megvannak, ideje dinamikus tartalommal bővíteni az oldalt.
+
+**Folytatás:** [2. feladat - API dokumentáció integrálása](./reszfeladat2)
