@@ -13,7 +13,7 @@ Ebben a feladatban létrehozod a saját Docusaurus projektedet, megismerkedsz az
 
 Először is, hozzuk létre a Docusaurus projektünk alapjait.
 
-1. **Prancssor megnyitása:** Nyiss meg egy parancssoros terminált a gépeden.
+1. **Parancssor megnyitása:** Nyiss meg egy parancssoros terminált a gépeden.
 
 1.  **Node.js ellenőrzése:** Győződj meg róla, hogy a gépeden telepítve van a Node.js (LTS verzió ajánlott).
 

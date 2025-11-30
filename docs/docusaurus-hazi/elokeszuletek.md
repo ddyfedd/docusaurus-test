@@ -36,20 +36,6 @@ A VSCode a legnépszerűbb ingyenes kódszerkesztő webfejlesztéshez.
 
 Ez a lépés kritikus a Docusaurus futtatásához. Javasoljuk az LTS (Long Term Support) verzió használatát.
 
-### Ellenőrzés
-Ha már telepítetted a Node.js-t és az NPM-et, ellenőrizd a verziókat egy **parancssorban (CLI)** futtatva a következő parancsokat:
-```bash
-node -v
-npm -v
-```
-A kimenetnek valami hasonlónak kell lennie (a verziószámok eltérhetnek):
-```
-v18.18.0
-9.8.5
-```
-Ha a parancsok verziószámokat adnak vissza, akkor a Node.js és NPM megfelelően telepítve és konfigurálva van a rendszereden.
-
-
 ### Telepítés macOS-re
 
 Mac-en a legegyszerűbb módja a telepítésnek a **Homebrew** vagy az **nvm** (Node Version Manager) használata.
@@ -57,7 +43,23 @@ Mac-en a legegyszerűbb módja a telepítésnek a **Homebrew** vagy az **nvm** (
 <Tabs>
 <TabItem value="brew" label="Homebrew (Egyszerű)" default>
 
-Ha van [Homebrew](https://brew.sh/) telepítve:
+A [Homebrew](https://brew.sh/) egy népszerű csomagkezelő macOS-re, amely megkönnyíti a fejlesztői eszközök telepítését.
+
+**Homebrew telepítése (ha még nincs telepítve):**
+
+Nyisd meg a Terminált és futtasd:
+
+```bash
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+```
+
+A telepítő végigvezet a folyamaton. Telepítés után ellenőrizd:
+
+```bash
+brew --version
+```
+
+**Node.js telepítése Homebrew-val:**
 
 ```bash
 brew install node
@@ -66,14 +68,46 @@ brew install node
 </TabItem>
 <TabItem value="nvm" label="NVM">
 
-Az `nvm` segítségével könnyen válthatsz Node verziók között.
+Az `nvm` (Node Version Manager) segítségével könnyen válthatsz Node verziók között, ami hasznos több projekt kezelésekor.
 
-1.  Telepítsd az nvm-et a [hivatalos leírás](https://github.com/nvm-sh/nvm#installing-and-updating) alapján.
+**NVM telepítése macOS-re:**
+
+1.  Nyisd meg a Terminált és futtasd az nvm telepítő scriptjét:
+
+    ```bash
+    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
+    ```
+
+2.  A telepítés után **zárd be és nyisd meg újra a Terminált**, vagy futtasd:
+
+    ```bash
+    source ~/.bashrc  # vagy ~/.zshrc, attól függően, melyik shell-t használod
+    ```
+
+3.  Ellenőrizd, hogy az nvm telepítve van-e:
+
+    ```bash
+    nvm --version
+    ```
+
+**Node.js telepítése NVM-mel:**
+
 1.  Telepítsd a Node legfrissebb LTS verzióját:
 
     ```bash
     nvm install --lts
     ```
+
+2.  Állítsd be alapértelmezettként:
+
+    ```bash
+    nvm use --lts
+    nvm alias default 'lts/*'
+    ```
+
+:::info
+További információ: [nvm hivatalos dokumentáció](https://github.com/nvm-sh/nvm#installing-and-updating)
+:::
 
 </TabItem>
 </Tabs>
@@ -97,15 +131,45 @@ Windows-on gyakori probléma, hogy a `node` vagy `npm` parancsok nem érhetőek 
 </TabItem>
 <TabItem value="nvm-windows" label="nvm-windows">
 
-Hasonlóan a Mac-es nvm-hez, ez is verziókezelést tesz lehetővé.
+Hasonlóan a Mac-es nvm-hez, ez is verziókezelést tesz lehetővé Windows-on.
 
-1.  Töltsd le a legfrissebb `nvm-setup.exe`-t a [coreybutler/nvm-windows](https://github.com/coreybutler/nvm-windows/releases) repóból.
-1.  Telepítsd és használd parancssorból:
-  
+**nvm-windows telepítése:**
+
+1.  Látogass el a [coreybutler/nvm-windows releases](https://github.com/coreybutler/nvm-windows/releases) oldalára
+2.  Töltsd le a legfrissebb `nvm-setup.exe` fájlt (általában a legfelső release-nél található)
+3.  Futtasd a letöltött telepítőt és kövesd a telepítési lépéseket
+4.  Telepítés után **nyiss meg egy új parancssort** (hogy a PATH változások életbe lépjenek)
+
+**Node.js telepítése nvm-windows-zal:**
+
+1.  Ellenőrizd, hogy az nvm telepítve van:
+
+    ```bash
+    nvm version
+    ```
+
+2.  Telepítsd a Node legfrissebb LTS verzióját:
+
     ```bash
     nvm install lts
+    ```
+
+3.  Aktiváld a telepített verziót:
+
+    ```bash
     nvm use lts
     ```
+
+4.  Ellenőrizd a telepítést:
+
+    ```bash
+    node -v
+    npm -v
+    ```
+
+:::info
+További információ: [nvm-windows dokumentáció](https://github.com/coreybutler/nvm-windows)
+:::
 
 </TabItem>
 </Tabs>
@@ -164,6 +228,27 @@ Ezután a `node -v` és `npm -v` parancsoknak működniük kell.
 </TabItem>
 </Tabs>
 
+
+### Ellenőrzés
+
+A telepítés után ellenőrizd, hogy a Node.js és az NPM megfelelően működik-e. Nyiss meg egy **új parancssor ablakot** (hogy a PATH változások életbe lépjenek), majd futtasd a következő parancsokat:
+
+```bash
+node -v
+npm -v
+```
+
+A kimenetnek valami hasonlónak kell lennie (a verziószámok eltérhetnek):
+```
+v18.18.0
+9.8.5
+```
+
+Ha a parancsok verziószámokat adnak vissza, akkor a Node.js és NPM megfelelően telepítve és konfigurálva van a rendszereden.
+
+:::tip
+Ha Windows-on a `node -v` parancsra "not recognized" hibát kapsz, lásd a [Windows hibaelhárítás](#hibaelhárítás-windows-on) szekciót.
+:::
 
 ## 3. Yarn telepítése (Opcionális)
 

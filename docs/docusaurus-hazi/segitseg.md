@@ -3,7 +3,7 @@ title: Segítség és támogatás
 sidebar_position: 3
 ---
 
-# Segígség és támogatás
+# Segítség és támogatás
 
 Kedves Hallgató!
 
