@@ -12,7 +12,7 @@ import {themes as prismThemes} from 'prism-react-renderer';
 const config = {
   title: 'r_d - TW kurzus',
   tagline: 'Dinosaurs are cool',
-  favicon: 'img/favicon_16x16.png',
+  favicon: 'img/rd-logo.svg',
 
   // Set the production url of your site here
   url: 'https://ddyfedd.github.io',
@@ -72,7 +72,7 @@ const config = {
         title: 'TW kurzus',
         logo: {
           alt: 'r_d',
-          src: 'img/favicon_128x128.png',
+          src: 'img/rd-logo.svg',
         },
         items: [
           {
