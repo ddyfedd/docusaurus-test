@@ -300,12 +300,12 @@ ___
 
 ## Elvárás az 1. feladat végére
 
-| Kritérium | Elvárt állapot |
-| --------- |--------------- |
-| **Alap Docusaurus projekt** | Egy működő, alap Docusaurus projekt létezik a `main` branch-en a GitHub repository-ban. |
-| **`feature/advanced-structure` branch** | Létezik egy `feature/advanced-structure` (vagy hasonló nevű) branch a GitHub repository-ban. |
-| **Dokumentáció átstrukturálása (`docs/tutorials`)** | Az eredeti dokumentáció a `docs/tutorials` mappába lett áthelyezve, az oldalsáv és a navigáció helyesen konfigurálva. |
-| **Új dokumentációs szekció (`docs/guides`)** | Létrejött egy új `docs/guides` mappa több oldallal és almappákkal. |
-| **Frontmatter használata** | A `docs/guides` szekcióban a `sidebar_position`, `title`, és `_category_.json` használata demonstrálva van. |
-| **Navigáció (`guides` szekció)** | Az új `guides` szekció megjelenik a navigációs sávban és/vagy az oldalsáv(ak)ban, és az oldalak elérhetőek. |
-| **Pull Request (struktúra)** | Egy merge-elt (de a branch nem törölt) PR mutat a `feature/advanced-structure` branch-ből a `main` branch-be. |
+| Kritérium | Elvárt állapot | Elkészült |
+| --------- |--------------- | :-------: |
+| **Alap Docusaurus projekt** | Egy működő, alap Docusaurus projekt létezik a `main` branch-en a GitHub repository-ban. | <input type="checkbox" /> |
+| **`feature/advanced-structure` branch** | Létezik egy `feature/advanced-structure` (vagy hasonló nevű) branch a GitHub repository-ban. | <input type="checkbox" /> |
+| **Dokumentáció átstrukturálása (`docs/tutorials`)** | Az eredeti dokumentáció a `docs/tutorials` mappába lett áthelyezve, az oldalsáv és a navigáció helyesen konfigurálva. | <input type="checkbox" /> |
+| **Új dokumentációs szekció (`docs/guides`)** | Létrejött egy új `docs/guides` mappa több oldallal és almappákkal. | <input type="checkbox" /> |
+| **Frontmatter használata** | A `docs/guides` szekcióban a `sidebar_position`, `title`, és `_category_.json` használata demonstrálva van. | <input type="checkbox" /> |
+| **Navigáció (`guides` szekció)** | Az új `guides` szekció megjelenik a navigációs sávban és/vagy az oldalsáv(ak)ban, és az oldalak elérhetőek. | <input type="checkbox" /> |
+| **Pull Request (struktúra)** | Egy merge-elt (de a branch nem törölt) PR mutat a `feature/advanced-structure` branch-ből a `main` branch-be. | <input type="checkbox" /> |
