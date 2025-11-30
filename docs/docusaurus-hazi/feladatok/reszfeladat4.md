@@ -3,6 +3,9 @@ title: 4. feladat - Review folyamat
 sidebar_position: 4
 ---
 
+import Tabs from '@theme/Tabs'
+import TabItem from '@theme/TabItem'
+
 # 4. feladat: Együttműködés szimulálása - változások kezelése és review folyamat
 
 Az utolsó feladatban egy egyszerűsített review folyamatot fogsz szimulálni, ahogy az a valós projektekben is történik.
@@ -15,7 +18,7 @@ Ez magában foglalja a változtatások külön branch-en történő fejlesztés�
 Bizonyosodj meg róla, hogy a `main` branch-ed tartalmazza az 1., 2. és 3. feladatok eredményeit (azaz a strukturált "Tutorials" és "Guides" szekciókat, az integrált API dokumentációt, és a beállított CI/CD folyamatot, ami a `main` branch-re sikeresen deploy-olja az oldalt GitHub Pages-re).
 
 :::tip
-Ha beállítottad a 3. részfeladatban az opcionális `test.yml` workflow-t (ami PR-ekre fut le), az most hasznos lesz.
+Ha beállítottad a [3. részfeladatban](./reszfeladat3) az opcionális `test.yml` workflow-t (ami PR-ekre fut le), az most hasznos lesz.
 :::
 
 ## 4.1 Új branch létrehozása a változtatásoknak
@@ -44,10 +47,51 @@ Végezz el néhány egyszerűbb módosítást a Docusaurus oldaladon ezen az új
     - Nyisd meg az egyik korábban létrehozott "Guides" vagy "Tutorials" oldalt, és végezz rajta valamilyen tartalmi módosítást (pl. adj hozzá egy új bekezdést, javíts ki egy elírást, frissíts egy linket).
     - Akár szándékosan illessz be egy törött linket, hogy megfigyelhesd a build és teszt folyamataid viselkedését. Szerinted az ilyen eseteket, milyen szigorúan kéne kezelni? Ha van kedved, ehhez mérten állíts be szabályokat a workflow-idban.
 
+      :::tip A törött linkek kezelése
+      A `docusaurus.config.js` fájlban az `onBrokenLinks` és `onBrokenAnchors` opciók segítségével szabályozhatod, hogyan reagáljon a Docusaurus a törött linkekre. Ha ezeket `'throw'` értékre állítod, a build folyamat hibával leáll, ha törött linket talál. 
+      
+      Ez azt eredményezi, hogy a `test.yml` workflow is meghiúsul törött linkek detektálásakor, ami - a (később) beállított Branch Protection szabályoknak köszönhetően - blokkolja a Pull Request merge-elését. Így garantálható, hogy nem kerül hibás link az éles oldalra.
+      :::
+
+
 1.  **Új blogbejegyzés írása (opcionális):**
 
     - Hozz létre egy új Markdown fájlt a `blog` mappában (pl. `YYYY-MM-DD-my-latest-thoughts.md`).
     - Írj egy rövid blogbejegyzést a Docusaurus használatával kapcsolatos tapasztalataidról vagy bármilyen más releváns témáról. Adj neki címet és esetleg címkéket (tags) a frontmatter-ben.
+    - Gyakorolhatod az `authors.yml` fájl létrehozását/módosítását és frontmatter-ben hivatkozását, hogy feltűntesd magad a bejegyzés szerzőjeként.
+
+      <Tabs groupId="author-setup">
+      <TabItem value="authors-yml" label="authors.yml">
+
+      Ez a `blog/authors.yml` fájl struktúrája, ahol definiálhatod a blogbejegyzések szerzőit:
+
+      ```yaml title="blog/authors.yml"
+      # Add your own authors here
+      your_name:
+        name: Your Name
+        title: Your Title
+        url: https://your-website.com
+        image_url: https://your-website.com/img/profile.jpg
+      ```
+
+      </TabItem>
+      <TabItem value="blog-frontmatter" label="Blog frontmatter">
+
+      A blogbejegyzés `frontmatter`-ében így hivatkozhatsz a definiált szerzőre:
+
+      ```markdown title="blog/YYYY-MM-DD-my-latest-thoughts.md"
+      ---
+      title: My Latest Thoughts
+      date: 2023-11-30
+      authors: [your_name] # Az authors.yml-ben definiált szerző ID-je
+      tags: [docusaurus, blog, frontend]
+      ---
+
+      Hello World! This is my first blog post.
+      ```
+
+      </TabItem>
+      </Tabs>
 
 1.  **Apróbb konfigurációs módosítás (opcionális):**
     - Módosíts valamit a `docusaurus.config.js`-ben, például a lábléc (`footer`) tartalmát vagy egy navbar link szövegét.
@@ -63,6 +107,16 @@ Mentsd el a munkádat.
     git commit -m "Docs: Update content and prepare for review" 
     ```
 
+    :::tip Atomikus commitek fontossága
+    Bár a `git add .` kényelmes, érdemes megfontolni a változások atomikusabb hozzáadását a staging területhez (`git add <fájlnév>`) vagy a `git add -p` (patch) parancs használatát. Ez lehetővé teszi, hogy a commitok kisebbek és fókuszáltabbak legyenek, ami megkönnyíti a Git history áttekintését és a hibakeresést.
+
+    **Miért hasznos ez?**
+    *   **Tisztább history:** Egy-egy commit egy logikai változást takar, így könnyebb megérteni, miért és hogyan történt egy módosítás.
+    *   **Egyszerűbb review:** A kisebb, fókuszált commit-ok sokkal könnyebben áttekinthetők a Pull Request review során.
+    *   **Célzott hibakeresés:** Ha egy hiba kerül a kódba, a `git bisect`/`git blame` sokkal hatékonyabban tudja megtalálni a hibás commit-ot, ha azok atomikusak.
+    *   **Rugalmasabb változtatások:** Könnyebb egy-egy commit-ot visszaállítani (`git revert`), ha valami probléma merül fel, anélkül, hogy más, helyes változásokat is elveszítenél.
+    :::
+
 1.  **Változások feltöltése:**
 
     ```bash
@@ -76,13 +130,24 @@ Most kérj véleményezést a változtatásaidról.
 1.  **PR nyitása:** A GitHub felületén hozz létre egy Pull Requestet a `feature/update-content-and-review` branch-ből a `main` branch-be.
 1.  **PR leírása:** Adj egy rövid, de informatív címet és leírást a PR-nek, összefoglalva a végrehajtott változtatásokat. Hivatkozhatsz a házi feladat ezen részére.
 
+    :::tip Haladó: PR Sablonok és Automatizáció
+    A konzisztens és informatív PR leírások érdekében érdemes bevezetni egy [Pull Request sablont](https://docs.github.com/en/communities/using-templates-to-encourage-useful-issues-and-pull-requests/creating-a-pull-request-template-for-your-repository) (pl. `.github/pull_request_template.md`). 
+    
+    Ez a sablon automatikusan megjelenik minden új PR létrehozásakor, és segíti a fejlesztőket a szükséges információk megadásában (pl. változások célja, tesztelési lépések, kapcsolódó ticket-ek).
+
+    **Automatizációs ötlet**
+    
+     Egy GitHub Actions workflow segítségével még tovább léphetsz! Készíthetsz egy olyan folyamatot, ami a PR létrehozásakor (vagy frissítésekor) automatikusan kigyűjti a megváltozott fájlok listáját (`git diff --name-only`), és hozzáfűzi azt a PR leírásához vagy egy kommenthez. Ez jelentősen megkönnyíti a reviewerek dolgát, mivel azonnal látják az érintett fájlokat anélkül, hogy a "Files changed" fülre kellene kattintaniuk.
+    :::
+
+
 ## 4.5 Review folyamat szimulálása és branch protection (opcionális, de ajánlott)
 
 Ez a rész segít megérteni, hogyan működnek a minőségbiztosítási kapuk a valós projektekben.
 
 1.  **Branch Protection Rule beállítása (ha még nem tetted meg):**
 
-    - A GitHub repository **Settings -> Branches** részében adj hozzá vagy módosítsd a "branch protection rule"-t a `main` branch-re.
+    - A GitHub repository **Settings > Branches** részében adj hozzá vagy módosítsd a "branch protection rule"-t a `main` branch-re.
     - **Kötelező beállítások a szimulációhoz:**
 
         - **Require a pull request before merging:** Ezt pipáld be.
@@ -100,7 +165,7 @@ Ez a rész segít megérteni, hogyan működnek a minőségbiztosítási kapuk a
 
     - A PR létrehozása után a GitHub felületén kérhetsz review-t másoktól.
     - Képzeld el, hogy kapsz néhány visszajelzést (pl. "Javítsd ki az elírást a ... oldalon", "Ez a mondat nem egyértelmű").
-    - Végezd el a kért (szimulált) javításokat a `feature/update-content-and-review` branch-en, commitold és pushold őket. A PR automatikusan frissülni fog az új commitokkal.
+    - Végezd el a kért (szimulált) javításokat a `feature/update-content-and-review` branch-en, commit-old és push-old őket. A PR automatikusan frissülni fog az új commit-okkal.
 
 1.  **Status check ellenőrzése:**
     - Figyeld meg, hogy a PR-en a beállított status check (pl. a `Test Docusaurus Build` workflow) lefut-e. Ennek sikeresnek kell lennie a merge-eléshez.
@@ -115,11 +180,15 @@ Miután a (szimulált) review megtörtént, a kért változtatások elkészülte
     :::tip
     Használhatod a **Squash and merge** vagy **Rebase and merge** opciót is, ha ismered őket, de egy sima **Merge pull request** is tökéletes.
     :::
-1.  **Branch törlése (szimulált):** A merge után a GitHub felajánlja a `feature/update-content-and-review` branch törlését. Ez bevett gyakorlat valós projektek esetén, hogy a publikus fájlrendszer letisztult maradjon. A házifeladat szempontjából most **NE TÖRÖLD**, hogy az oktató láthassa a branch-en végzett munkát is.
+1.  **Branch törlése (szimulált):** A merge után a GitHub felajánlja a `feature/update-content-and-review` branch törlését. Ez bevett gyakorlat valós projektek esetén, hogy a publikus fájlrendszer letisztult maradjon. 
+ 
+    :::danger figyelmeztetés
+    **A házifeladat részeként most <ins>_NE TÖRÖLD_</ins>, hogy az oktató láthassa a branch-en végzett munkát is.**
+    :::
 
 ## 4.7 Deployment ellenőrzése
 
-A `main` branch-be történő merge után a 3. feladatban beállított `deploy.yml` workflow-nak automatikusan el kell indulnia.
+A `main` branch-be történő merge után a [3. feladatban](./reszfeladat3) beállított `deploy.yml` workflow-nak automatikusan el kell indulnia.
 
 1.  **Actions ellenőrzése:** Az **Actions** fülön ellenőrizd, hogy a deployment workflow sikeresen lefutott-e.
 1.  **Publikált oldal ellenőrzése:** Látogass el a GitHub Pages oldaladra, és győződj meg róla, hogy a legutóbbi változtatásaid megjelentek-e.
@@ -128,11 +197,11 @@ ___
 
 ## Elvárás a 4. feladat végére
 
-| Kritérium | Elvárt állapot |
-| --------- | -------------- |
-| **`feature/update-content-and-review` branch** | Létezik egy `feature/update-content-and-review` (vagy hasonló nevű) branch a GitHub repository-ban, ami tartalmazza a legutóbbi módosításokat. |
-| **Pull Request (Tartalomfrissítés)** | Létrehoztál egy Pull Requestet a `feature/update-content-and-review` branch-ből a `main` branch-be. |
-| **Merge** | A PR (szimulált review után) sikeresen merge-elve lett a `main` branch-be. A feature branch ne legyen törölve. |
-| **(Opcionális) Branch Protection** | Demonstráltad a branch protection rule-ok használatát (pl. kötelező review, kötelező status check a merge előtt). |
-| **CI/CD és publikálás** | A `main` branch-be történt merge után a CI/CD folyamat sikeresen deploy-olta a frissített oldalt GitHub Pages-re. |
-| **Változások láthatósága** | A 4.2 pontban végrehajtott változtatások láthatóak az élő, publikált GitHub Pages oldalon. |
+| Kritérium | Elvárt állapot | Elkészült |
+| --------- | -------------- | :-------: |
+| **`feature/update-content-and-review` branch** | Létezik egy `feature/update-content-and-review` (vagy hasonló nevű) branch a GitHub repository-ban, ami tartalmazza a legutóbbi módosításokat. | <input type="checkbox" /> |
+| **Pull Request (Tartalomfrissítés)** | Létrehoztál egy Pull Requestet a `feature/update-content-and-review` branch-ből a `main` branch-be. | <input type="checkbox" /> |
+| **Merge** | A PR (szimulált review után) sikeresen merge-elve lett a `main` branch-be. A feature branch ne legyen törölve. | <input type="checkbox" /> |
+| **(Opcionális) Branch Protection** | Demonstráltad a branch protection rule-ok használatát (pl. kötelező review, kötelező status check a merge előtt). | <input type="checkbox" /> |
+| **CI/CD és publikálás** | A `main` branch-be történt merge után a CI/CD folyamat sikeresen deploy-olta a frissített oldalt GitHub Pages-re. | <input type="checkbox" /> |
+| **Változások láthatósága** | A 4.2 pontban végrehajtott változtatások láthatóak az élő, publikált GitHub Pages oldalon. | <input type="checkbox" /> |
