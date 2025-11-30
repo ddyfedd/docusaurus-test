@@ -10,7 +10,9 @@ Ez a kurzus összegző és egyben utolsó házi feladata. Ennek a feladatnak a c
 Egy saját, működő Docusaurus dokumentációs oldalt fogsz létrehozni, verziókezelni Git-tel, API dokumentációval bővíteni, és egy egyszerű CI/CD folyamaton keresztül publikálni GitHub Actions segítségével.
 
 :::tip[Fontos]
-A feladat célja nem egy tökéletes, minden részletében kidolgozott dokumentáció létrehozása, hanem az alapvető funkciók megismerése és magabiztos használatának elsajátítása. Bátran kísérletezz, nézz utána dolgoknak a hivatalos dokumentációkban, és fedezd fel a Docusaurusban rejlő lehetőségeket!
+A feladat célja nem egy tökéletes, minden részletében kidolgozott dokumentáció létrehozása, hanem az alapvető funkciók megismerése és magabiztos használatának elsajátítása. 
+
+Bátran kísérletezz, nézz utána dolgoknak a hivatalos dokumentációkban, és fedezd fel a Docusaurusban rejlő lehetőségeket!
 :::
 
 ## A feladat felépítése
