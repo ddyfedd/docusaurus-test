@@ -38,9 +38,9 @@ module.exports = {
   // ...
   url: 'https://<FELHASZNALONEVED>.github.io', // Cseréld le a saját GitHub felhasználónevedre!
   baseUrl: '/<REPOSITORY_NEVE>/', // Cseréld le a repository nevére!
-                                     // Ha a repository-hoz tartozó GitHub Pages neve <FELHASZNALONEVED>.github.io, akkor a baseUrl '/' legyen.
   organizationName: '<FELHASZNALONEVED>', // A GitHub felhasználóneved
   projectName: '<REPOSITORY_NEVE>', // A GitHub repository-d neve
+  trailingSlash: false,
   // ...
 };
 ```
@@ -51,9 +51,9 @@ module.exports = {
 
 ## 3.2 GitHub Actions workflow létrehozása a deploymenthez
 
-Automatizáljuk a publikálást.
+Ebben a lépésben létrehozzuk a szükséges konfigurációs fájlokat, hogy a dokumentációs oldalunk változásait automatikusa publikálja egy GitHub Actions workflow.
 
-1.  **Mappák létrehozása:** A Docusaurus projekted gyökerében hozz létre egy `.github/workflows` mappát.
+1.  **Mappa létrehozása:** A Docusaurus projekted gyökerében hozz létre egy `.github/workflows` mappát.
 
     ```bash
     mkdir -p .github/workflows
@@ -128,8 +128,8 @@ Automatizáljuk a publikálást.
         [Korábban hozzáadtuk az output mappát a `.gitignore`-hoz](./reszfeladat2#markdown-fájlok-generálása), így a CI/CD során a build job az aktuális forrásból fogja generálni a friss API doksit. Neked elég csak a YAML fájlok kezelésével törődnöd.
     :::
 
-1.  **Repository beállítások GitHub Actions-höz:** A GitHub repository **Settings -> Actions -> General** részében a **Workflow permissions** alatt győződj meg róla, hogy a **Read and write permissions** van kiválasztva.
-1. **Repository beállítások GitHub Pages-hez:** A GitHub repository **Settings -> Pages** menü **Build and deploy** szekciójában állítsd be a következőt: **Source: GitHub Action**s.
+1.  **Repository beállítások GitHub Actions-höz:** A GitHub repository **Settings > Actions > General** részében a **Workflow permissions** alatt győződj meg róla, hogy a **Read and write permissions** van kiválasztva.
+1. **Repository beállítások GitHub Pages-hez:** A GitHub repository **Settings > Pages** menü **Build and deploy** szekciójában állítsd be a következőt: **Source: GitHub Actions**.
 
 :::info[Segítség]
 [Docusaurus Deployment - Triggering deployment with GitHub Actions](https://docusaurus.io/docs/deployment#triggering-deployment-with-github-actions)
@@ -212,9 +212,9 @@ ___
 
 ## Elvárás a 3. feladat végére
 
-| Kritérium | Elvárt állapot |
-| --------- | -------------- |
-| **GitHub Pages konfiguráció** | A `docusaurus.config.js` helyesen van beállítva a GitHub Pages publikáláshoz (`url`, `baseUrl`, `organizationName`, `projectName`). |
-| **Deployment workflow (`deploy.yml`)** | Egy működő `deploy.yml` GitHub Actions workflow létezik, ami a `main` branch-re történő merge után sikeresen build-eli és deploy-olja az oldalt. |
-| **Sikeres deployment** | A Docusaurus oldal (beleértve a korábbi feladatokból származó tartalmakat) sikeresen elérhető a publikus GitHub Pages URL-en. |
-| **(Opcionális) Teszt workflow (`test.yml`)** | Egy `test.yml` workflow is létezik, ami Pull Request-ek esetén ellenőrzi a Docusaurus build sikerességét. |
+| Kritérium | Elvárt állapot | Elkészült |
+| --------- | -------------- | :-------: |
+| **GitHub Pages konfiguráció** | A `docusaurus.config.js` helyesen van beállítva a GitHub Pages publikáláshoz (`url`, `baseUrl`, `organizationName`, `projectName`). | <input type="checkbox" /> |
+| **Deployment workflow (`deploy.yml`)** | Egy működő `deploy.yml` GitHub Actions workflow létezik, ami a `main` branch-re történő merge után sikeresen build-eli és deploy-olja az oldalt. | <input type="checkbox" /> |
+| **Sikeres deployment** | A Docusaurus oldal (beleértve a korábbi feladatokból származó tartalmakat) sikeresen elérhető a publikus GitHub Pages URL-en. | <input type="checkbox" /> |
+| **(Opcionális) Teszt workflow (`test.yml`)** | Egy `test.yml` workflow is létezik, ami Pull Request-ek esetén ellenőrzi a Docusaurus build sikerességét. | <input type="checkbox" /> |
