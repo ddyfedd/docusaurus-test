@@ -137,6 +137,83 @@ module.exports = { // Vagy export default, ha ES modult használsz
 };
 ```
 
+### API dokumentáció stílusainak hozzáadása
+
+Az API dokumentáció oldalsávjában megjelenő HTTP metódusok (GET, POST, PUT, DELETE, stb.) és a "schema" elemek stílusának testreszabásához, hogy azok jobban kiemelkedjenek és olvashatóbbak legyenek, a `src/css/custom.css` fájlba a következő CSS szabályokat kell hozzáadni. Ezáltal egységesebb és vizuálisan is vonzóbb lesz a dokumentáció.
+
+Az alábbi CSS kód a metódusokhoz tartozó címkéket (badge-eket) alakítja ki, különböző háttérszínekkel az egyes HTTP metódusokhoz, valamint egy általános stílust biztosít az API metódusok és sémák navigációs linkjei számára.
+
+:::info
+Ezek a stílusok a [Docusaurus OpenAPI plugin demó oldaláról](https://docusaurus-openapi.tryingpan.dev/customization/styling) származnak, és kiváló kiindulási alapot nyújtanak a vizuálisan gazdagabb API dokumentációhoz.
+:::
+
+```css title="src/css/custom.css"
+// ...
+
+.api-method > .menu__link,
+.schema > .menu__link {
+  align-items: center;
+  justify-content: start;
+}
+
+.api-method > .menu__link::before,
+.schema > .menu__link::before {
+  width: 55px;
+  height: 20px;
+  font-size: 12px;
+  line-height: 20px;
+  text-transform: uppercase;
+  font-weight: 600;
+  border-radius: 0.25rem;
+  border: 1px solid;
+  margin-right: var(--ifm-spacing-horizontal);
+  text-align: center;
+  flex-shrink: 0;
+  border-color: transparent;
+  color: white;
+}
+
+.get > .menu__link::before {
+  content: "get";
+  background-color: var(--ifm-color-primary);
+}
+
+.post > .menu__link::before {
+  content: "post";
+  background-color: var(--openapi-code-green);
+}
+
+.delete > .menu__link::before {
+  content: "del";
+  background-color: var(--openapi-code-red);
+}
+
+.put > .menu__link::before {
+  content: "put";
+  background-color: var(--openapi-code-blue);
+}
+
+.patch > .menu__link::before {
+  content: "patch";
+  background-color: var(--openapi-code-orange);
+}
+
+.head > .menu__link::before {
+  content: "head";
+  background-color: var(--ifm-color-secondary-darkest);
+}
+
+.event > .menu__link::before {
+  content: "event";
+  background-color: var(--ifm-color-secondary-darkest);
+}
+
+.schema > .menu__link::before {
+  content: "schema";
+  background-color: var(--ifm-color-secondary-darkest);
+}
+```
+
 :::info[Segítség]
 [PaloAltoNetworks/docusaurus-openapi-docs GitHub Repository](https://github.com/PaloAltoNetworks/docusaurus-openapi-docs)
 :::
@@ -185,7 +262,7 @@ module.exports = { // Vagy export default, ha ES modult használsz
 
 1. **Fejlesztői szerver indítása és ellenőrzés:** 
 
-    Indítsd el a fejlesztői szervert (`npm start`), és ellenőrizd, hogy a generált API dokumentáció megjelenik-e a `docs/petstore/add-pet` útvonalon (vagy ahogy a [navigációban beállítod](#navigáció-beállítása)).
+    Indítsd el a fejlesztői szervert (`npm start`), és ellenőrizd, hogy a generált API dokumentáció megjelenik-e a `docs/petstore/add-pet` útvonalon (vagy ahogy a [navigációban beállítottad](#navigáció-beállítása)).
 
 ### Navigáció beállítása
 
@@ -264,7 +341,10 @@ ___
 | Kritérium | Elvárt állapot |
 | --------- | -------------- |
 | **`feature/api-documentation` branch** | Létezik egy `feature/api-documentation` (vagy hasonló nevű) branch a GitHub repository-ban, a `main` branch-ből kiindulva. |
+| **OpenAPI specifikáció** | A specifikációs fájl (pl. `petstore-api.yaml`) létre lett hozva az `openapi/` mappában. |
 | **OpenAPI plugin** | A `@paloaltonetworks/docusaurus-openapi-docs` plugin telepítve és helyesen van konfigurálva a `docusaurus.config.js`-ben. |
 | **API dokumentáció generálása** | Az API dokumentáció (pl. Petstore API alapján) sikeresen legenerálódott a megadott `outputDir`-be. |
+| **.gitignore (ajánlott)** | A generált dokumentáció kimeneti mappája hozzá van adva a `.gitignore` fájlhoz. |
 | **Navigáció (API)** | Az API dokumentáció elérhető a Docusaurus oldal navigációs sávján és/vagy oldalsávján keresztül. |
+| **Stílusok (CSS)** | A `src/css/custom.css` fájl tartalmazza az API metódusok (GET, POST, stb.) stílusdefinícióit. |
 | **Pull Request (API)** | Egy merge-elt (de a branch nem törölt) PR mutat a `feature/api-documentation` branch-ből a `main` branch-be. |
