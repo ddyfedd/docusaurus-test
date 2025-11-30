@@ -339,13 +339,13 @@ ___
 
 ## Elvárás a 2. feladat végére
 
-| Kritérium | Elvárt állapot |
-| --------- | -------------- |
-| **`feature/api-documentation` branch** | Létezik egy `feature/api-documentation` (vagy hasonló nevű) branch a GitHub repository-ban, a `main` branch-ből kiindulva. |
-| **OpenAPI specifikáció** | A specifikációs fájl (pl. `petstore-api.yaml`) létre lett hozva az `openapi/` mappában. |
-| **OpenAPI plugin** | A `@paloaltonetworks/docusaurus-openapi-docs` plugin telepítve és helyesen van konfigurálva a `docusaurus.config.js`-ben. |
-| **API dokumentáció generálása** | Az API dokumentáció (pl. Petstore API alapján) sikeresen legenerálódott a megadott `outputDir`-be. |
-| **.gitignore (ajánlott)** | A generált dokumentáció kimeneti mappája hozzá van adva a `.gitignore` fájlhoz. |
-| **Navigáció (API)** | Az API dokumentáció elérhető a Docusaurus oldal navigációs sávján és/vagy oldalsávján keresztül. |
-| **Stílusok (CSS)** | A `src/css/custom.css` fájl tartalmazza az API metódusok (GET, POST, stb.) stílusdefinícióit. |
-| **Pull Request (API)** | Egy merge-elt (de a branch nem törölt) PR mutat a `feature/api-documentation` branch-ből a `main` branch-be. |
+| Kritérium | Elvárt állapot | Elkészült |
+| --------- | -------------- | :-------: |
+| **`feature/api-documentation` branch** | Létezik egy `feature/api-documentation` (vagy hasonló nevű) branch a GitHub repository-ban, a `main` branch-ből kiindulva. | <input type="checkbox" /> |
+| **OpenAPI specifikáció** | A specifikációs fájl (pl. `petstore-api.yaml`) létre lett hozva az `openapi/` mappában. | <input type="checkbox" /> |
+| **OpenAPI plugin** | A `@paloaltonetworks/docusaurus-openapi-docs` plugin telepítve és helyesen van konfigurálva a `docusaurus.config.js`-ben. | <input type="checkbox" /> |
+| **API dokumentáció generálása** | Az API dokumentáció (pl. Petstore API alapján) sikeresen legenerálódott a megadott `outputDir`-be. | <input type="checkbox" /> |
+| **.gitignore (ajánlott)** | A generált dokumentáció kimeneti mappája hozzá van adva a `.gitignore` fájlhoz. | <input type="checkbox" /> |
+| **Navigáció (API)** | Az API dokumentáció elérhető a Docusaurus oldal navigációs sávján és/vagy oldalsávján keresztül. | <input type="checkbox" /> |
+| **Stílusok (CSS)** | A `src/css/custom.css` fájl tartalmazza az API metódusok (GET, POST, stb.) stílusdefinícióit. | <input type="checkbox" /> |
+| **Pull Request (API)** | Egy merge-elt (de a branch nem törölt) PR mutat a `feature/api-documentation` branch-ből a `main` branch-be. | <input type="checkbox" /> |
