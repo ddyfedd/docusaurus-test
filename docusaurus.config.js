@@ -146,7 +146,8 @@ const config = {
         additionalLanguages: [
           'bash',
           'powershell',
-          'javascript'
+          'javascript',
+          'yaml'
         ]
       },
     }),
