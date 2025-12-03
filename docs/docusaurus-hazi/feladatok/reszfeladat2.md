@@ -194,7 +194,7 @@ yarn add react-dom@18
 ### OpenAPI specifikáció előkészítése
 
 1.  Hozz létre egy `openapi` mappát a projekt gyökerében.
-1.  Mentsd el ide a [Petstore API](https://petstore3.swagger.io/openapi.yaml) specifikációját `petstore-api.yaml` néven. Használhatsz más v3-as OpenAPI specifikációt is, pl. az API-s házival létrehozottat.
+1.  Mentsd el ide a [Petstore API](pathname:///petstore-api.yaml) specifikációját `petstore-api.yaml` néven. Használhatsz más v3-as OpenAPI specifikációt is, pl. az API-s házival létrehozottat.
 
 ### Plugin konfigurálása
 
