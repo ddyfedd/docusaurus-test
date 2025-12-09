@@ -243,7 +243,7 @@ Ebben a lépésben létrehozzuk a szükséges konfigurációs fájlokat, hogy a 
       push:
         branches:
           - main # Vagy master, attól függően, hogy nevezted el a fő branched
-      workflow_dispatch: # Manuális indítás engedélyezése
+      # workflow_dispatch: # Manuális indítás engedélyezése
         # Review gh actions docs if you want to further define triggers, paths, etc
         # [https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#on](https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#on)
 
@@ -257,7 +257,7 @@ Ebben a lépésben létrehozzuk a szükséges konfigurációs fájlokat, hogy a 
               fetch-depth: 0
           - uses: actions/setup-node@v4
             with:
-              node-version: 18
+              node-version: 22
               cache: npm
 
           - name: Install dependencies
@@ -356,7 +356,7 @@ Ez a lépés segít abban, hogy hibás kód ne kerülhessen be a `main` branch-b
             uses: actions/checkout@v4
           - uses: actions/setup-node@v4
             with:
-              node-version: 18
+              node-version: 22
               cache: npm
 
           - name: Install dependencies
