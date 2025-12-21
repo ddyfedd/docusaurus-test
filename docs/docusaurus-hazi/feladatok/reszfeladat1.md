@@ -238,8 +238,6 @@ Szervezzük át a kezdeti dokumentációt.
 
 ### Új dokumentációs szekció létrehozása (`/docs/guides`)
 
-Bővítsük a dokumentációt egy új szekcióval.
-
 <details>
 
 <summary>
@@ -275,6 +273,8 @@ docs/guides/
 ```
 
 </details>
+
+Bővítsük a dokumentációt egy új szekcióval.
 
 1.  **`guides` almappa létrehozása:** A `docs` mappán belül hozz létre egy `guides` almappát.
 
